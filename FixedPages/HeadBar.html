@@ -1,325 +1,77 @@
-<!-- FixedPages/HeadBar.html  (PARTIAL: only style + header) -->
+<header class="MenuBar">
+  <!-- Checkbox toggle -->
+  <input id="navToggle" class="NavToggle" type="checkbox" aria-hidden="true" />
 
-<style>
-  :root{
-    --hbH: 78px;
-    --hbText: rgba(234,240,255,.92);
-    --hbMuted: rgba(234,240,255,.72);
-    --hbBorder: rgba(234,240,255,.12);
-    --hbGlass: rgba(7,10,24,.72);
-    --hbShadow: 0 18px 60px rgba(0,0,0,.55);
+  <!-- Logo -->
+  <a class="MenuBar__logoLink" href="index.html" aria-label="Alternative Ways Home">
+    <img class="MenuBarLogo" src="Resources/Logo.png" alt="Alternative Ways" />
+  </a>
 
-    --hbA: #7C3AED;
-    --hbB: #22D3EE;
-  }
+  <!-- Desktop Nav -->
+  <nav class="MenuBar__nav" aria-label="Hauptnavigation">
+    <a class="MenuBarItem" href="index.html" data-nav="index">Home</a>
+    <a class="MenuBarItem" href="about.html" data-nav="about">About</a>
 
-  .HB{
-    position: fixed;
-    inset: 0 0 auto 0;
-    z-index: 9999;
-    height: var(--hbH);
-    border-bottom: 1px solid rgba(234,240,255,.10);
-    background: var(--hbGlass);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-  }
-  .HB::before{
-    content:"";
-    position:absolute; inset:0;
-    pointer-events:none;
-    background:
-      radial-gradient(900px 260px at 18% 0%, rgba(124,58,237,.22), transparent 60%),
-      radial-gradient(900px 260px at 82% 0%, rgba(34,211,238,.14), transparent 60%),
-      linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
-    opacity:.95;
-  }
-
-  .HB__inner{
-    position: relative;
-    height: 100%;
-    width: min(var(--container, 1180px), calc(100% - 40px));
-    margin: 0 auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap: 14px;
-  }
-
-  /* Brand */
-  .HB__brand{
-    display:flex;
-    align-items:center;
-    gap: 12px;
-    min-width: 220px;
-  }
-  .HB__logo{
-    width: 42px; height: 42px;
-    object-fit: contain;
-    border-radius: 14px;
-    border: 1px solid var(--hbBorder);
-    background: rgba(255,255,255,.02);
-    box-shadow: 0 14px 40px rgba(0,0,0,.35);
-  }
-  .HB__brandText{ display:flex; flex-direction:column; line-height:1.05; }
-  .HB__name{ font-weight: 820; letter-spacing: -0.02em; font-size: 16px; color: var(--hbText); }
-  .HB__tag{
-    margin-top: 2px;
-    font-size: 12px;
-    color: var(--hbMuted);
-    letter-spacing: .06em;
-    text-transform: uppercase;
-  }
-
-  /* Desktop nav */
-  .HB__nav{
-    display:flex;
-    align-items:center;
-    gap: 10px;
-  }
-  .HB__link{
-    padding: 8px 10px;
-    border-radius: 12px;
-    border: 1px solid transparent;
-    background: transparent;
-    color: rgba(234,240,255,.80);
-    font-size: 14px;
-    transition: transform .12s ease, background .12s ease, color .12s ease, border-color .12s ease;
-    white-space: nowrap;
-  }
-  .HB__link:hover{
-    transform: translateY(-1px);
-    background: rgba(255,255,255,.04);
-    color: rgba(234,240,255,.98);
-  }
-  .HB__link.is-strong{
-    background: linear-gradient(90deg, rgba(124,58,237,.10), rgba(34,211,238,.06));
-    color: rgba(234,240,255,.96);
-  }
-  .HB__link.is-active{
-    border-color: rgba(124,58,237,.55);
-    background: linear-gradient(90deg, rgba(124,58,237,.22), rgba(34,211,238,.12));
-    color: rgba(234,240,255,1);
-  }
-
-  /* Right side */
-  .HB__right{ display:flex; align-items:center; gap: 10px; }
-
-  /* Social */
-  .HB__social{ display:flex; align-items:center; gap: 8px; }
-  .HB__icon{
-    width: 36px; height: 36px;
-    display:grid; place-items:center;
-    border-radius: 12px;
-    border: 1px solid var(--hbBorder);
-    background: rgba(255,255,255,.03);
-    color: rgba(234,240,255,.86);
-    transition: transform .12s ease, background .12s ease, border-color .12s ease, color .12s ease;
-  }
-  .HB__icon:hover{
-    transform: translateY(-1px);
-    background: rgba(255,255,255,.05);
-    border-color: rgba(234,240,255,.18);
-    color: rgba(234,240,255,1);
-  }
-
-  /* Burger */
-  .HB__burger{
-    width: 44px; height: 44px;
-    border-radius: 14px;
-    border: 1px solid rgba(234,240,255,.18);
-    background: rgba(255,255,255,.05);
-    box-shadow: 0 14px 40px rgba(0,0,0,.35);
-    cursor:pointer;
-
-    display:none; /* mobile only */
-    align-items:center;
-    justify-content:center;
-    gap: 5px;
-    flex-direction: column;
-
-    transition: transform .12s ease, background .12s ease, border-color .12s ease;
-  }
-  .HB__burger:hover{
-    transform: translateY(-1px);
-    background: rgba(255,255,255,.07);
-    border-color: rgba(234,240,255,.24);
-  }
-  .HB__burger span{
-    width: 18px;
-    height: 2px;
-    border-radius: 2px;
-    background: rgba(234,240,255,.92);
-    transition: transform .15s ease, opacity .15s ease;
-  }
-
-  /* Overlay + drawer */
-  .HB__overlay{
-    position: fixed;
-    inset: var(--hbH) 0 0 0;
-    background: rgba(0,0,0,.40);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    display: none;
-  }
-
-  .HB__drawer{
-    position: fixed;
-    top: var(--hbH);
-    left: 0; right: 0;
-    padding: 12px 0 0;
-    display: none;
-  }
-  .HB__drawerCard{
-    width: min(var(--container, 1180px), calc(100% - 40px));
-    margin: 0 auto;
-    border-radius: 18px;
-    border: 1px solid rgba(234,240,255,.12);
-    background: rgba(10, 12, 34, .92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 22px 80px rgba(0,0,0,.55);
-    overflow:hidden;
-  }
-  .HB__drawerNav{
-    display:flex;
-    flex-direction:column;
-    padding: 12px;
-    gap: 6px;
-  }
-  .HB__drawerNav a{
-    padding: 12px 12px;
-    border-radius: 14px;
-    border: 1px solid transparent;
-    background: rgba(255,255,255,.02);
-    color: rgba(234,240,255,.92);
-    transition: background .12s ease, transform .12s ease, border-color .12s ease;
-  }
-  .HB__drawerNav a:hover{
-    transform: translateY(-1px);
-    background: rgba(255,255,255,.05);
-  }
-  .HB__drawerNav a.is-strong{
-    background: linear-gradient(90deg, rgba(124,58,237,.12), rgba(34,211,238,.06));
-  }
-  .HB__drawerNav a.is-active{
-    border-color: rgba(124,58,237,.55);
-    background: linear-gradient(90deg, rgba(124,58,237,.22), rgba(34,211,238,.12));
-  }
-
-  .HB__drawerMeta{
-    margin-top: 8px;
-    padding-top: 10px;
-    border-top: 1px solid rgba(234,240,255,.10);
-    display:flex;
-    gap: 10px;
-  }
-  .HB__drawerMeta a{
-    flex:1;
-    text-align:center;
-    font-size: 13px;
-    color: rgba(234,240,255,.78);
-    padding: 10px 10px;
-    border-radius: 14px;
-  }
-
-  /* Open state */
-  .HB.is-open .HB__overlay{ display:block; }
-  .HB.is-open .HB__drawer{ display:block; }
-  .HB.is-open .HB__burger span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
-  .HB.is-open .HB__burger span:nth-child(2){ opacity:0; }
-  .HB.is-open .HB__burger span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
-
-  /* Mobile */
-  @media (max-width: 980px){
-    .HB__nav{ display:none; }
-    .HB__burger{ display:flex; }
-  }
-  @media (max-width: 560px){
-    .HB__social{ display:none; }
-    .HB__tag{ display:none; }
-    .HB__brand{ min-width: 0; }
-  }
-
-  html.nav-open, html.nav-open body{ overflow:hidden; }
-
-  /* ===== HARD OVERRIDE: Burger MUSS unter 980 sichtbar sein ===== */
-@media (max-width: 980px){
-  header.HB2 .HB2__nav{ display:none !important; }
-  header.HB2 .HB2__burger{
-    display:flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    position: relative !important;
-    z-index: 10001 !important;
-  }
-}
-
-</style>
-
-<header class="HB" role="banner">
-  <div class="HB__inner">
-    <a class="HB__brand" href="index.html" aria-label="Alternative Ways — Home">
-      <img class="HB__logo" src="Resources/Logo.png" alt="Alternative Ways Logo" />
-      <span class="HB__brandText">
-        <span class="HB__name">Alternative Ways</span>
-        <span class="HB__tag">Instrumental Progressive Metal</span>
-      </span>
-    </a>
-
-    <nav class="HB__nav" aria-label="Main navigation">
-      <a class="HB__link is-strong" href="index.html" data-nav="index.html">Home</a>
-      <a class="HB__link is-strong" href="media.html" data-nav="media.html">Media</a>
-      <a class="HB__link" href="bio.html" data-nav="bio.html">Bio</a>
-      <a class="HB__link" href="presskit.html" data-nav="presskit.html">Press Kit</a>
-      <a class="HB__link" href="contact.html" data-nav="contact.html">Contact</a>
-    </nav>
-
-    <div class="HB__right">
-      <div class="HB__social" aria-label="Social links">
-        <a class="HB__icon" href="https://www.instagram.com/alternativeways_band/" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-            <path fill="currentColor" d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9A3.5 3.5 0 0 0 20 16.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.75-2.2a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1Z"/>
-          </svg>
-        </a>
-        <a class="HB__icon" href="https://www.youtube.com/@alternativewaysband" target="_blank" rel="noopener" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-            <path fill="currentColor" d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.5 31.5 0 0 0 2 12a31.5 31.5 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 22 12a31.5 31.5 0 0 0-.4-4.8ZM10 15.2V8.8L16 12l-6 3.2Z"/>
-          </svg>
-        </a>
-        <a class="HB__icon" href="https://open.spotify.com/intl-de/artist/2eXOPzI17CW2z1KklVT7n9" target="_blank" rel="noopener" aria-label="Spotify">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-            <path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.9.9 0 0 1-1.24.3c-2.7-1.65-6.1-2.02-10.1-1.1a.9.9 0 0 1-.4-1.75c4.42-1 8.25-.56 11.3 1.3a.9.9 0 0 1 .44 1.25Zm1.1-2.5a1.1 1.1 0 0 1-1.51.36c-3.1-1.9-7.9-2.45-11.6-1.33a1.1 1.1 0 1 1-.63-2.1c4.25-1.28 9.52-.65 13.1 1.55a1.1 1.1 0 0 1 .64 1.52Zm.1-2.7c-3.7-2.2-9.8-2.4-13.3-1.34a1.2 1.2 0 1 1-.7-2.3c4.1-1.25 11-.99 15.3 1.55a1.2 1.2 0 0 1-1.3 2.1Z"/>
-          </svg>
-        </a>
-        <a class="HB__icon" href="https://www.facebook.com/alternativewaysofficial/" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-            <path fill="currentColor" d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.7-1.6h1.6V4.8c-.3 0-1.4-.1-2.8-.1-2.8 0-4.7 1.7-4.7 4.8V11H6.7v3h2.6v8h4.2Z"/>
-          </svg>
-        </a>
+    <div class="MenuBarDrop">
+      <a class="MenuBarItem" href="services.html" data-nav="services">
+        Services <span class="MenuBarChevron">▾</span>
+      </a>
+      <div class="MenuBarDrop__panel" role="menu" aria-label="Services Submenu">
+        <a class="DropItem" href="services.html#coaching">Coaching</a>
+        <a class="DropItem" href="services.html#workshops">Workshops</a>
+        <a class="DropItem" href="services.html#booking">Booking</a>
       </div>
-
-      <button class="HB__burger" type="button" aria-label="Menü öffnen" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
     </div>
+
+    <a class="MenuBarItem" href="contact.html" data-nav="contact">Contact</a>
+  </nav>
+
+  <!-- Desktop CTA -->
+  <div class="MenuBar__cta">
+    <a class="Btn Btn--accent" href="contact.html">Anfragen</a>
   </div>
 
-  <div class="HB__overlay" hidden></div>
+  <!-- Burger Button -->
+  <label class="BurgerBtn" for="navToggle" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </label>
 
-  <div class="HB__drawer" hidden>
-    <div class="HB__drawerCard">
-      <nav class="HB__drawerNav" aria-label="Mobile navigation">
-        <a class="is-strong" href="index.html" data-nav="index.html">Home</a>
-        <a class="is-strong" href="media.html" data-nav="media.html">Media</a>
-        <a href="bio.html" data-nav="bio.html">Bio</a>
-        <a href="presskit.html" data-nav="presskit.html">Press Kit</a>
-        <a href="contact.html" data-nav="contact.html">Contact</a>
-        <div class="HB__drawerMeta">
-          <a href="impressum.html">Impressum</a>
-          <a href="datenschutz.html">Datenschutz</a>
-        </div>
-      </nav>
+  <!-- Overlay + Drawer -->
+  <label class="NavOverlay" for="navToggle" aria-hidden="true"></label>
+
+  <aside class="MobileNav" aria-label="Mobile Navigation">
+    <div class="MobileNav__top">
+      <div class="MobileNav__title">MENU</div>
+      <label class="MobileNav__close" for="navToggle" aria-label="Menü schließen">✕</label>
     </div>
-  </div>
+
+    <div class="MobileNav__links">
+      <a class="MobileLink" href="index.html">Home</a>
+      <a class="MobileLink" href="about.html">About</a>
+      <a class="MobileLink" href="services.html">Services</a>
+      <a class="MobileLink" href="contact.html">Contact</a>
+
+      <a class="MobileCTA" href="contact.html">Anfragen</a>
+    </div>
+  </aside>
 </header>
+
+<script>
+  // Active-Nav markieren (wie FG: simpel, robust)
+  (function(){
+    const p = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+    document.querySelectorAll(".MenuBarItem[data-nav]").forEach(a => a.classList.remove("is-active"));
+
+    const map = {
+      "index.html":"index",
+      "about.html":"about",
+      "services.html":"services",
+      "contact.html":"contact"
+    };
+
+    const key = map[p];
+    if (!key) return;
+    const el = document.querySelector(`.MenuBarItem[data-nav="${key}"]`);
+    if (el) el.classList.add("is-active");
+  })();
+</script>
