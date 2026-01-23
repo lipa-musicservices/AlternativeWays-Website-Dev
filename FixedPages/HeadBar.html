@@ -241,6 +241,20 @@
   }
 
   html.nav-open, html.nav-open body{ overflow:hidden; }
+
+  /* ===== HARD OVERRIDE: Burger MUSS unter 980 sichtbar sein ===== */
+@media (max-width: 980px){
+  header.HB2 .HB2__nav{ display:none !important; }
+  header.HB2 .HB2__burger{
+    display:flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 10001 !important;
+  }
+}
+
 </style>
 
 <header class="HB" role="banner">
