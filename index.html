@@ -15,124 +15,76 @@
   <!-- Header via FixedPages -->
   <div id="HeadBar"></div>
 
-  <!-- FULLSCREEN HERO TITLEPIC -->
-  <section class="Hero Hero--fullscreen" aria-label="Hero">
-    <div class="Hero__bg" aria-hidden="true"></div>
+  <!-- HERO (minimal, no buttons, image always full width visible) -->
+  <section class="HeroAW" aria-label="Hero">
+    <img class="HeroAW__img" src="Resources/TitlePic.png" alt="" aria-hidden="true" />
 
-    <div class="Hero__inner">
-      <div class="Hero__badge">ALTERNATIVE WAYS</div>
+    <!-- overlay for readability -->
+    <div class="HeroAW__shade" aria-hidden="true"></div>
 
-      <h1 class="Hero__title">Progressive Metal from Speyer</h1>
+    <div class="HeroAW__content">
+      <div class="HeroAW__badge">ALTERNATIVE WAYS</div>
 
-      <p class="Hero__sub">
-        Alternative Ways steht für handgemachte Live-Musik mit Druck und Atmosphäre –
-        progressiv, heavy, aber nicht verkopft. Live bringen wir das auf die Bühne: tight, laut, sauber.
+      <h1 class="HeroAW__title">Progressive Metal from Speyer</h1>
+
+      <p class="HeroAW__text">
+        Hier könnte Ihre Werbung stehen
       </p>
-
-      <div class="Hero__actions">
-        <a class="Btn Btn--accent" href="contact.html">Über uns</a>
-        <a class="Btn Btn--ghost" href="media.html">Media</a>
-      </div>
     </div>
   </section>
 
-  <!-- EVENTKALENDER direkt darunter -->
+  <!-- EVENTS -->
   <main class="Page">
-    <section class="Section" aria-label="Eventkalender">
+    <section class="Section" aria-label="Events">
       <div class="SectionHead">
         <h2 class="SectionTitle">Live</h2>
         <div class="SectionHint"></div>
       </div>
 
-      <div class="EventCard">
-        <div class="EventCard__top">
-          <div class="EventCard__intro">
-            <div class="EventCard__kicker">Next Shows</div>
-            <div class="EventCard__sub">
-              Termine werden hier gepflegt. Wenn’s kurzfristige Änderungen gibt, steht’s auch auf Socials.
-            </div>
-          </div>
-
-          <div class="EventCard__actions">
-            <!-- optional:
-            <a class="Btn Btn--ghost" href="events.html">Alle Termine</a>
-            <a class="Btn Btn--accent" href="contact.html">Booking</a>
-            -->
-          </div>
+      <div class="AWEvents">
+        <div class="AWEvents__note">
+          Upcoming gigs
         </div>
 
-        <div class="EventList">
-          <article class="EventItem">
-            <div class="EventDate">
-              <div class="EventDate__day">24</div>
-              <div class="EventDate__mon">FEB</div>
-              <div class="EventDate__year">2026</div>
+        <div class="AWEvents__list">
+          <div class="AWEvent">
+            <div class="AWEvent__date">
+              <div class="AWEvent__day">24</div>
+              <div class="AWEvent__mon">FEB</div>
+              <div class="AWEvent__year">2026</div>
             </div>
+            <div class="AWEvent__info">
+              <div class="AWEvent__name">Alternative Ways — Live</div>
+              <div class="AWEvent__meta">19:00 • Stuttgart • Eintritt frei</div>
+              <div class="AWEvent__desc">Details folgen.</div>
+            </div>
+          </div>
 
-            <div class="EventInfo">
-              <h3 class="EventTitle">Alternative Ways — Live</h3>
-              <div class="EventMeta">
-                <span class="EventPill">19:00</span>
-                <span class="EventPill">Stuttgart</span>
-                <span class="EventPill EventPill--accent">Eintritt frei</span>
-              </div>
-              <p class="EventText">
-                Live-Set mit eigenen Songs und ausgewählten Covers. Details folgen.
-              </p>
+          <div class="AWEvent">
+            <div class="AWEvent__date">
+              <div class="AWEvent__day">03</div>
+              <div class="AWEvent__mon">MAR</div>
+              <div class="AWEvent__year">2026</div>
             </div>
+            <div class="AWEvent__info">
+              <div class="AWEvent__name">Alternative Ways — Club Show</div>
+              <div class="AWEvent__meta">20:30 • Mannheim</div>
+              <div class="AWEvent__desc">Venue/Tickets kommen hier rein.</div>
+            </div>
+          </div>
 
-            <div class="EventCTA">
-              <a class="Btn Btn--ghost" href="#">Details</a>
+          <div class="AWEvent">
+            <div class="AWEvent__date">
+              <div class="AWEvent__day">15</div>
+              <div class="AWEvent__mon">APR</div>
+              <div class="AWEvent__year">2026</div>
             </div>
-          </article>
-
-          <article class="EventItem">
-            <div class="EventDate">
-              <div class="EventDate__day">03</div>
-              <div class="EventDate__mon">MAR</div>
-              <div class="EventDate__year">2026</div>
+            <div class="AWEvent__info">
+              <div class="AWEvent__name">Alternative Ways — Showcase</div>
+              <div class="AWEvent__meta">18:00 • Online</div>
+              <div class="AWEvent__desc">Stream-Link folgt.</div>
             </div>
-
-            <div class="EventInfo">
-              <h3 class="EventTitle">Alternative Ways — Club Show</h3>
-              <div class="EventMeta">
-                <span class="EventPill">20:30</span>
-                <span class="EventPill">Mannheim</span>
-                <span class="EventPill">Tickets</span>
-              </div>
-              <p class="EventText">
-                Club-Abend, volles Brett. Infos zu Venue/Tickets kommen hier rein.
-              </p>
-            </div>
-
-            <div class="EventCTA">
-              <a class="Btn Btn--ghost" href="#">Details</a>
-            </div>
-          </article>
-
-          <article class="EventItem">
-            <div class="EventDate">
-              <div class="EventDate__day">15</div>
-              <div class="EventDate__mon">APR</div>
-              <div class="EventDate__year">2026</div>
-            </div>
-
-            <div class="EventInfo">
-              <h3 class="EventTitle">Alternative Ways — Showcase</h3>
-              <div class="EventMeta">
-                <span class="EventPill">18:00</span>
-                <span class="EventPill">Online</span>
-                <span class="EventPill">Stream</span>
-              </div>
-              <p class="EventText">
-                Kurzer Set-/Song-Teaser. Link folgt.
-              </p>
-            </div>
-
-            <div class="EventCTA">
-              <a class="Btn Btn--ghost" href="#">Details</a>
-            </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -150,154 +102,146 @@
     $("#FootBar").load("FixedPages/FootBar.html");
   </script>
 
-  <!-- Page-only Styles -->
+  <!-- Page-only Styles (minimal) -->
   <style>
-    /* ============ FULLSCREEN HERO ============ */
-    .Hero--fullscreen{
+    /* =========================
+       HERO AW — minimal
+       ========================= */
+    .HeroAW{
       position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-end;
-      border-bottom: 1px solid rgba(238,240,255,.08);
+      min-height: 100svh;
       overflow: hidden;
-      padding-top: var(--topbarH);
+      border-bottom: 1px solid rgba(238,240,255,.08);
+      padding-top: var(--topbarH); /* header height */
+      background: var(--bg0);
     }
 
-    .Hero--fullscreen .Hero__bg{
+    /* Image must always be fully visible in width:
+       width=100vw, height auto, no crop. */
+    .HeroAW__img{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: auto;
+      display: block;
+    }
+
+    /* If image is not tall enough to fill the screen, we keep a dark base behind it */
+    .HeroAW__shade{
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(180deg, rgba(7,8,24,.18), rgba(7,8,24,.78) 62%, rgba(7,8,24,.94)),
-        url("Resources/TitlePic.png");
-      background-size: cover;
-      background-position: 50% 50%;
-      background-repeat: no-repeat;
-      transform: none;
-      filter: saturate(1.05) contrast(1.05);
+      background: linear-gradient(
+        180deg,
+        rgba(7,8,24,.10),
+        rgba(7,8,24,.72) 64%,
+        rgba(7,8,24,.94)
+      );
+      pointer-events: none;
     }
 
-    .Hero--fullscreen .Hero__inner{
+    .HeroAW__content{
       position: relative;
-      width: 100%;
+      z-index: 2;
       max-width: var(--container);
       margin: 0 auto;
-      padding: 56px 18px 44px;
-      padding-bottom: calc(44px + env(safe-area-inset-bottom, 0px));
+      padding: 44px 18px 42px;
+      padding-bottom: calc(42px + env(safe-area-inset-bottom, 0px));
+      display: grid;
+      gap: 10px;
+      align-content: end;
+      min-height: calc(100svh - var(--topbarH));
     }
 
-    .Hero--fullscreen .Hero__badge{
+    .HeroAW__badge{
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      height: 30px;
+      padding: 0 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: rgba(238,240,255,.92);
       background: rgba(238,240,255,.10);
       box-shadow: 0 0 0 1px rgba(238,240,255,.14) inset;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
 
-    .Hero--fullscreen .Hero__sub{
+    .HeroAW__title{
+      margin: 0;
+      font-size: clamp(26px, 4.3vw, 44px);
+      font-weight: 950;
+      line-height: 1.06;
+      letter-spacing: .2px;
+    }
+
+    .HeroAW__text{
+      margin: 0;
+      max-width: 70ch;
       color: rgba(238,240,255,.78);
-      max-width: 72ch;
+      font-size: 15.5px;
+      line-height: 1.55;
     }
 
-    /* ============ MOBILE HERO FIX ============ */
+    /* Mobile: content should start earlier (higher) */
     @media (max-width: 720px){
-      .Hero--fullscreen{
-        min-height: 100svh; /* besser als 100vh auf Mobile (Adressleiste etc.) */
-      }
-
-      .Hero--fullscreen .Hero__inner{
-        padding: 40px 14px 30px;
-        padding-bottom: calc(30px + env(safe-area-inset-bottom, 0px));
-      }
-
-      /* Ziel: weniger dämlicher Crop bei Hochformat.
-         Wir verschieben den Fokus hoch UND nehmen minimal "zoom" raus. */
-      .Hero--fullscreen .Hero__bg{
-        background-position: 50% 22%;
-      }
-
-      .Hero--fullscreen .Hero__actions .Btn{
-        width: 100%;
+      .HeroAW__content{
+        padding: 28px 14px 70px;
+        padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
       }
     }
 
-    /* OPTIONAL: Wenn du GAR KEIN Crop willst, dann stattdessen auf Mobile:
-       (auskommentieren und das oben drüber ggf. drin lassen)
-    @media (max-width: 720px){
-      .Hero--fullscreen .Hero__bg{
-        background-size: contain;
-        background-position: center;
-        background-color: #070818;
-      }
-    }
-    */
-
-    /* ============ EVENT CARD ============ */
-    .EventCard{
+    /* =========================
+       EVENTS — minimal
+       ========================= */
+    .AWEvents{
       margin-top: 14px;
-      border-radius: 22px;
+      border-radius: 18px;
       border: 1px solid rgba(238,240,255,.10);
-      background:
-        radial-gradient(900px 260px at 20% 0%, rgba(124,92,255,.14), transparent 60%),
-        rgba(238,240,255,.03);
+      background: rgba(238,240,255,.03);
       box-shadow: 0 0 0 1px rgba(0,0,0,.12) inset;
       overflow: hidden;
     }
-    .EventCard__top{
-      padding: 16px 16px 12px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 14px;
-      border-bottom: 1px solid rgba(238,240,255,.08);
-    }
-    .EventCard__kicker{
-      font-weight: 950;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-      font-size: 12px;
-      opacity: .95;
-    }
-    .EventCard__sub{
-      margin-top: 6px;
+
+    .AWEvents__note{
+      padding: 14px 14px 12px;
       color: rgba(238,240,255,.72);
       font-size: 14px;
       line-height: 1.45;
-      max-width: 72ch;
+      border-bottom: 1px solid rgba(238,240,255,.08);
     }
-    .EventCard__actions{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      justify-content: flex-end;
-      min-width: 260px;
-    }
-    .EventList{
+
+    .AWEvents__list{
       padding: 10px;
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: 10px;
     }
-    .EventItem{
-      border-radius: 18px;
+
+    .AWEvent{
+      border-radius: 16px;
       border: 1px solid rgba(238,240,255,.10);
       background: rgba(238,240,255,.04);
-      box-shadow: 0 0 0 1px rgba(0,0,0,.10) inset;
       padding: 12px;
       display: grid;
-      grid-template-columns: 92px 1fr auto;
+      grid-template-columns: 92px 1fr;
       gap: 12px;
       align-items: center;
     }
-    .EventDate{
-      border-radius: 16px;
+
+    .AWEvent__date{
+      border-radius: 14px;
       padding: 10px 8px;
       text-align: center;
       border: 1px solid rgba(124,92,255,.22);
       background: rgba(124,92,255,.10);
       box-shadow: 0 0 0 1px rgba(0,0,0,.18) inset;
     }
-    .EventDate__day{ font-size: 26px; font-weight: 950; line-height: 1; }
-    .EventDate__mon{
+    .AWEvent__day{ font-size: 26px; font-weight: 950; line-height: 1; }
+    .AWEvent__mon{
       margin-top: 6px;
       font-size: 12px;
       font-weight: 950;
@@ -305,50 +249,36 @@
       text-transform: uppercase;
       opacity: .92;
     }
-    .EventDate__year{ margin-top: 2px; font-size: 12px; color: rgba(238,240,255,.72); }
+    .AWEvent__year{ margin-top: 2px; font-size: 12px; color: rgba(238,240,255,.72); }
 
-    .EventInfo{ min-width: 0; }
-    .EventTitle{ margin: 0; font-size: 16px; font-weight: 950; line-height: 1.2; }
-    .EventMeta{ margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-    .EventPill{
-      height: 28px;
-      padding: 0 10px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-      background: rgba(238,240,255,.06);
-      box-shadow: 0 0 0 1px rgba(238,240,255,.10) inset;
-      color: rgba(238,240,255,.92);
-      opacity: .95;
+    .AWEvent__name{
+      font-weight: 950;
+      font-size: 15.5px;
+      line-height: 1.2;
     }
-    .EventPill--accent{
-      background: rgba(124,92,255,.14);
-      box-shadow: 0 0 0 1px rgba(124,92,255,.26) inset;
-      color: rgba(238,240,255,.98);
+    .AWEvent__meta{
+      margin-top: 6px;
+      color: rgba(238,240,255,.78);
+      font-size: 13.5px;
+      line-height: 1.35;
     }
-    .EventText{
-      margin: 10px 0 0;
-      color: rgba(238,240,255,.72);
-      line-height: 1.5;
-      font-size: 14px;
-      max-width: 90ch;
+    .AWEvent__desc{
+      margin-top: 8px;
+      color: rgba(238,240,255,.65);
+      font-size: 13.5px;
+      line-height: 1.4;
     }
-    .EventCTA{ display: flex; justify-content: flex-end; }
 
-    @media (max-width: 920px){
-      .EventCard__top{ flex-direction: column; align-items: stretch; }
-      .EventCard__actions{ min-width: 0; }
-      .EventCard__actions .Btn{ width: 100%; }
-      .EventItem{ grid-template-columns: 1fr; gap: 10px; }
-      .EventCTA{ justify-content: flex-start; }
-      .EventCTA .Btn{ width: 100%; }
-      .EventDate{ text-align: left; display: flex; gap: 10px; align-items: center; }
-      .EventDate__day{ font-size: 22px; }
-      .EventDate__mon, .EventDate__year{ margin-top: 0; }
+    @media (max-width: 720px){
+      .AWEvent{ grid-template-columns: 1fr; }
+      .AWEvent__date{
+        text-align: left;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .AWEvent__day{ font-size: 22px; }
+      .AWEvent__mon, .AWEvent__year{ margin-top: 0; }
     }
   </style>
 </body>
