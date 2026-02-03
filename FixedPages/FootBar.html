@@ -1,34 +1,311 @@
 <footer class="FootBar" role="contentinfo">
+  <style>
+    .FootBar{
+      position: relative;
+      margin-top: 60px;
+      border-top: 1px solid rgba(245,246,255,.10);
+      background:
+        radial-gradient(900px 420px at 15% 0%, rgba(124,58,237,.18), transparent 60%),
+        radial-gradient(800px 420px at 90% 10%, rgba(34,211,238,.12), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.18));
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    /* subtle vignette */
+    .FootBar::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      pointer-events:none;
+      background: radial-gradient(900px 520px at 50% 0%, transparent 45%, rgba(0,0,0,.35) 100%);
+      opacity:.85;
+      z-index: 0;
+    }
+
+    /* top inner wrap */
+    .FootBar__inner{
+      position: relative;
+      z-index: 1;
+      width: min(1140px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 38px 0 24px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 22px;
+    }
+
+    .FootBrand{
+      display:flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .FooterLogo{
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(245,246,255,.12);
+      padding: 10px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.45);
+    }
+
+    .FooterTitle{
+      font-weight: 1000;
+      letter-spacing: .2px;
+      font-size: 16px;
+      margin: 2px 0 6px;
+      color: rgba(245,246,255,.94);
+    }
+
+    .FooterTagline{
+      margin: 0;
+      color: rgba(245,246,255,.70);
+      font-size: 13.5px;
+      line-height: 1.5;
+      max-width: 46ch;
+    }
+
+    .FooterPills{
+      margin-top: 12px;
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .FooterPill{
+      height: 26px;
+      display:inline-flex;
+      align-items:center;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(245,246,255,.12);
+      background: rgba(0,0,0,.16);
+      color: rgba(245,246,255,.78);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .2px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .FootColTitle{
+      margin: 0 0 10px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 1000;
+      color: rgba(245,246,255,.72);
+    }
+
+    .FooterLinks{
+      display: grid;
+      gap: 8px;
+    }
+
+    .FooterInternalLink{
+      color: rgba(245,246,255,.86);
+      font-size: 13.5px;
+      font-weight: 850;
+      letter-spacing: .2px;
+      opacity: .92;
+      width: fit-content;
+      position: relative;
+      transition: opacity .15s ease, transform .15s ease;
+    }
+
+    /* slick underline */
+    .FooterInternalLink::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-4px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(124,58,237,.65), rgba(34,211,238,.35));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .18s ease;
+      opacity:.9;
+    }
+    .FooterInternalLink:hover{
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+    .FooterInternalLink:hover::after{ transform: scaleX(1); }
+
+    /* contact card */
+    .FooterCard{
+      border-radius: 18px;
+      border: 1px solid rgba(245,246,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 14px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .FooterCardLine{
+      margin: 0;
+      color: rgba(245,246,255,.78);
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+
+    .FooterCTA{
+      margin-top: 12px;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .FooterBtn{
+      height: 40px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 0 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(245,246,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(245,246,255,.92);
+      font-weight: 950;
+      letter-spacing: .2px;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      white-space: nowrap;
+    }
+    .FooterBtn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.10);
+      border-color: rgba(245,246,255,.22);
+    }
+    .FooterBtn--primary{
+      border-color: rgba(124,58,237,.40);
+      background: linear-gradient(90deg, rgba(124,58,237,.45), rgba(34,211,238,.20));
+    }
+
+    /* bottom bar */
+    .FootBar__bottom{
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(245,246,255,.10);
+      background: rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .FootBar__bottomInner{
+      width: min(1140px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 14px 0;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      color: rgba(245,246,255,.72);
+      font-size: 12.5px;
+    }
+
+    .FootTiny{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .Dot{
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(245,246,255,.30);
+    }
+
+    @media (max-width: 900px){
+      .FootBar__inner{
+        grid-template-columns: 1fr;
+      }
+      .FooterLogo{ width: 50px; height: 50px; }
+      .FootBar__bottomInner{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+
   <div class="FootBar__inner">
-    <div class="FootCol FootCol--brand">
+    <!-- BRAND -->
+    <div class="FootBrand">
       <img class="FooterLogo" src="Resources/Logo.png" alt="Alternative Ways" />
       <div>
         <div class="FooterTitle">Alternative Ways</div>
-        <div class="FooterMuted">
-          Klar. Modern. Direkt. <span class="Accent">Und ohne Bullshit.</span>
+        <p class="FooterTagline">
+
+        </p>
+
+        <div class="FooterPills" aria-label="Band tags">
+          <span class="FooterPill">Progressive</span>
+          <span class="FooterPill">Instrumental</span>
+          <span class="FooterPill">From Speyer</span>
         </div>
       </div>
     </div>
 
-    <div class="FootCol FootCol--links" aria-label="Footer Links">
-      <a class="FooterInternalLink" href="index.html">Home</a>
-      <a class="FooterInternalLink" href="about.html">About</a>
-      <a class="FooterInternalLink" href="services.html">Services</a>
-      <a class="FooterInternalLink" href="contact.html">Contact</a>
-      <a class="FooterInternalLink" href="imprint.html">Imprint</a>
-      <a class="FooterInternalLink" href="privacy.html">Privacy</a>
+    <!-- NAV -->
+    <div class="FootCol" aria-label="Footer navigation">
+      <div class="FootColTitle">Navigation</div>
+      <div class="FooterLinks">
+        <a class="FooterInternalLink" href="index.html">Home</a>
+        <a class="FooterInternalLink" href="about.html">About</a>
+        <a class="FooterInternalLink" href="media.html">Media</a>
+        <a class="FooterInternalLink" href="downloads.html">Downloads</a>
+        <a class="FooterInternalLink" href="contact.html">Contact</a>
+      </div>
+    </div>
+
+    <!-- LEGAL + CONTACT -->
+    <div class="FootCol" aria-label="Footer legal and contact">
+      <div class="FootColTitle">Get in touch</div>
+
+      <div class="FooterCard">
+        <p class="FooterCardLine">
+          Booking / collabs / questions — drop us a message.
+        </p>
+
+        <div class="FooterCTA">
+          <a class="FooterBtn FooterBtn--primary" href="contact.html">Contact Us</a>
+          <!-- optional: set your real link -->
+          <a class="FooterBtn" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+
+        <div style="margin-top:12px; display:grid; gap:8px;">
+          <a class="FooterInternalLink" href="imprint.html">Imprint</a>
+          <a class="FooterInternalLink" href="privacy.html">Privacy</a>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="FootBar__bottom">
-    <div>© <span id="y"></span> Alternative Ways</div>
-    <div>
-      <span style="opacity:.85;">Powered by</span>
-      <a class="FooterInternalLink" href="https://lipamusicservices.com" target="_blank" rel="noopener">LiPa Music Services</a>
+    <div class="FootBar__bottomInner">
+      <div class="FootTiny">
+        <span>© <span id="y"></span> Alternative Ways</span>
+        <span class="Dot" aria-hidden="true"></span>
+        <span style="opacity:.9;">All rights reserved</span>
+      </div>
+
+      <div class="FootTiny">
+        <span style="opacity:.85;">Powered by</span>
+        <a class="FooterInternalLink" href="https://lipamusicservices.com" target="_blank" rel="noopener">
+          LiPa Music Services
+        </a>
+      </div>
     </div>
   </div>
 
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    (function(){
+      const y = document.getElementById("y");
+      if(y) y.textContent = new Date().getFullYear();
+    })();
   </script>
 </footer>

@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alternative Ways | Media</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="Resources/AW-Icon.png" />
+  <meta name="theme-color" content="#070818" />
+  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
+
+  <style>
+    /* =========================================
+       MEDIA — page-only styles
+       (HeadBar + FootBar bleiben extern!)
+       ========================================= */
+    :root{
+      --bg0:#070818;
+      --bg1:#0b0f2a;
+      --text: rgba(238,240,255,.94);
+      --muted: rgba(238,240,255,.72);
+      --border: rgba(238,240,255,.10);
+      --card: rgba(238,240,255,.04);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --container: 1140px;
+      --topbarH: 78px;
+      --accent: #7C3AED;
+      --accent2:#22D3EE;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(34,211,238,.18), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+
+    .Page{
+      padding-top: var(--topbarH);
+      min-height: 100vh;
+      width:100%;
+    }
+    .Wrap{
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* FOOTBAR: bleibt aus FootBar.html (Fix nur fürs Einspannen) */
+    #FootBar{ width:100%; }
+    #FootBar .FootBar{
+      width: 100vw !important;
+      margin-left: calc(50% - 50vw) !important;
+      margin-right: 0 !important;
+    }
+
+    /* ---------- HERO ---------- */
+    .MediaHero{
+      position: relative;
+      margin-top: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(238,240,255,.12);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background:
+        radial-gradient(900px 520px at 20% 20%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(900px 520px at 80% 30%, rgba(34,211,238,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.25));
+    }
+
+    .MediaHero__inner{
+      padding: 22px 22px 18px;
+      display:grid;
+      gap: 12px;
+    }
+
+    .Kicker{
+      width: fit-content;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(238,240,255,.14);
+      background: rgba(238,240,255,.06);
+      color: rgba(238,240,255,.86);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .9px;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .Kicker__dot{
+      width: 7px; height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 6px rgba(124,58,237,.14);
+    }
+
+    .MediaHero__title{
+      margin: 0;
+      font-weight: 1000;
+      letter-spacing: -0.02em;
+      font-size: clamp(28px, 3.8vw, 46px);
+      line-height: 1.05;
+      text-shadow: 0 18px 60px rgba(0,0,0,.55);
+    }
+
+    .MediaHero__lead{
+      margin: 0;
+      max-width: 78ch;
+      color: rgba(238,240,255,.82);
+      font-size: 15.5px;
+      line-height: 1.55;
+    }
+
+    .BtnRow{
+      margin-top: 6px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+    }
+
+    .Btn{
+      height: 40px;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 0 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(238,240,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(238,240,255,.92);
+      font-weight: 950;
+      letter-spacing: .2px;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      white-space: nowrap;
+    }
+    .Btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.10);
+      border-color: rgba(238,240,255,.22);
+    }
+    .Btn--primary{
+      border-color: rgba(124,58,237,.40);
+      background: linear-gradient(90deg, rgba(124,58,237,.45), rgba(34,211,238,.20));
+    }
+
+    .TinyLinks{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+    }
+    .Pill{
+      height: 28px;
+      display:inline-flex;
+      align-items:center;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(238,240,255,.12);
+      background: rgba(0,0,0,.18);
+      color: rgba(238,240,255,.80);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .2px;
+      transition: transform .15s ease, opacity .15s ease;
+      opacity: .92;
+    }
+    .Pill:hover{ transform: translateY(-1px); opacity: 1; }
+
+    /* ---------- SECTIONS ---------- */
+    .Section{
+      padding: 18px 0 24px;
+    }
+    .SectionHead{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 10px 0 12px;
+    }
+    .SectionTitle{
+      margin:0;
+      font-size: 16px;
+      font-weight: 1000;
+      letter-spacing: .2px;
+    }
+    .SectionHint{
+      margin:0;
+      color: rgba(238,240,255,.68);
+      font-size: 13.5px;
+      line-height: 1.4;
+    }
+
+    /* ---------- VIDEO GRID ---------- */
+    .Grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 980px){
+      .Grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px){
+      .Grid{ grid-template-columns: 1fr; }
+    }
+
+    .Card{
+      border-radius: 18px;
+      border: 1px solid rgba(238,240,255,.10);
+      background: rgba(238,240,255,.03);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.14) inset;
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .Card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(124,58,237,.22);
+      background: rgba(238,240,255,.045);
+    }
+
+    .Thumb{
+      width:100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.02) contrast(1.03);
+    }
+    .CardBody{
+      padding: 12px 12px 14px;
+      display:grid;
+      gap: 6px;
+    }
+    .CardTitle{
+      margin:0;
+      font-weight: 1000;
+      letter-spacing: .2px;
+      font-size: 14.5px;
+      line-height: 1.2;
+    }
+    .CardMeta{
+      margin:0;
+      color: rgba(238,240,255,.72);
+      font-size: 13.3px;
+      line-height: 1.35;
+    }
+
+    /* ---------- RELEASES (square) ---------- */
+    .ReleaseGrid{
+      display:grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 1100px){
+      .ReleaseGrid{ grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 560px){
+      .ReleaseGrid{ grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .Release{
+      border-radius: 18px;
+      border: 1px solid rgba(238,240,255,.10);
+      background: rgba(238,240,255,.03);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.14) inset;
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .Release:hover{
+      transform: translateY(-2px);
+      border-color: rgba(34,211,238,.22);
+      background: rgba(238,240,255,.045);
+    }
+
+    .Cover{
+      width:100%;
+      aspect-ratio: 1 / 1; /* ✅ square */
+      object-fit: cover;
+      display:block;
+    }
+    .ReleaseBody{
+      padding: 10px 12px 12px;
+      display:grid;
+      gap: 4px;
+    }
+    .ReleaseName{
+      margin:0;
+      font-weight: 1000;
+      font-size: 13.6px;
+      letter-spacing: .2px;
+    }
+    .ReleaseMeta{
+      margin:0;
+      color: rgba(238,240,255,.70);
+      font-size: 12.8px;
+    }
+
+    .Divider{
+      height: 1px;
+      background: rgba(238,240,255,.08);
+      margin: 14px 0 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Headbar partial -->
+  <div id="HeadBar"></div>
+
+  <main class="Page">
+    <div class="Wrap">
+
+      <!-- HERO -->
+      <section class="MediaHero" aria-label="Media Hero">
+        <div class="MediaHero__inner">
+          <div class="Kicker"><span class="Kicker__dot" aria-hidden="true"></span>Alternative Ways • Media</div>
+          <h1 class="MediaHero__title">Videos, Live-Momente & Releases.</h1>
+          <p class="MediaHero__lead">
+            Hier findest du unseren YouTube-Kram auf einen Blick – plus Cover / Releases als schnelle Übersicht.
+            Kein Gelaber, nur Zeug zum Anschauen und Anhören.
+          </p>
+
+          <div class="BtnRow" aria-label="Main links">
+            <a class="Btn Btn--primary" href="https://www.youtube.com/@alternativewaysband" target="_blank" rel="noopener">
+              YouTube Channel
+            </a>
+            <a class="Btn" href="contact.html">Contact Us</a>
+          </div>
+
+          <div class="TinyLinks" aria-label="YouTube sections">
+            <a class="Pill" href="https://www.youtube.com/@alternativewaysband/videos" target="_blank" rel="noopener">Videos</a>
+            <a class="Pill" href="https://www.youtube.com/@alternativewaysband/shorts" target="_blank" rel="noopener">Shorts</a>
+            <a class="Pill" href="https://www.youtube.com/@alternativewaysband/playlists" target="_blank" rel="noopener">Playlists</a>
+            <a class="Pill" href="https://www.youtube.com/@alternativewaysband/streams" target="_blank" rel="noopener">Live</a>
+            <a class="Pill" href="https://www.youtube.com/@alternativewaysband/about" target="_blank" rel="noopener">About</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIDEOS -->
+      <section class="Section" aria-label="YouTube Videos">
+        <div class="SectionHead">
+          <h2 class="SectionTitle">YouTube Picks</h2>
+          <p class="SectionHint">
+            ✅ Ersetze nur die Video-IDs: <b>VIDEO_ID_1</b> … <b>VIDEO_ID_6</b> (steht im Code drin).
+          </p>
+        </div>
+
+        <div class="Grid">
+          <!-- =========
+               VIDEO SLOTS
+               Anleitung:
+               1) Öffne ein Video → URL sieht z.B. so aus: https://www.youtube.com/watch?v=ABC123xyz
+               2) ABC123xyz ist die Video-ID → in href + Thumbnail einsetzen
+               ========= -->
+
+          <a class="Card" href="https://www.youtube.com/watch?v=VIDEO_ID_1" target="_blank" rel="noopener" aria-label="Video 1">
+            <img class="Thumb" src="https://i.ytimg.com/vi/VIDEO_ID_1/hqdefault.jpg" alt="YouTube Video Thumbnail 1" loading="lazy">
+            <div class="CardBody">
+              <p class="CardTitle">Video #1</p>
+              <p class="CardMeta">YouTube • Alternative Ways</p>
+            </div>
+          </a>
+
+          <a class="Card" href="https://www.youtube.com/watch?v=VIDEO_ID_2" target="_blank" rel="noopener" aria-label="Video 2">
+            <img class="Thumb" src="https://i.ytimg.com/vi/VIDEO_ID_2/hqdefault.jpg" alt="YouTube Video Thumbnail 2" loading="lazy">
+            <div class="CardBody">
+              <p class="CardTitle">Video #2</p>
+              <p class="CardMeta">YouTube • Alternative Ways</p>
+            </div>
+          </a>
+
+          <a class="Card" href="https://www.youtube.com/watch?v=VIDEO_ID_3" target="_blank" rel="noopener" aria-label="Video 3">
+            <img class="Thumb" src="https://i.ytimg.com/vi/VIDEO_ID_3/hqdefault.jpg" alt="YouTube Video Thumbnail 3" loading="lazy">
+            <div class="CardBody">
+              <p class="CardTitle">Video #3</p>
+              <p class="CardMeta">YouTube • Alternative Ways</p>
+            </div>
+          </a>
+
+          <a class="Card" href="https://www.youtube.com/watch?v=VIDEO_ID_4" target="_blank" rel="noopener" aria-label="Video 4">
+            <img class="Thumb" src="https://i.ytimg.com/vi/VIDEO_ID_4/hqdefault.jpg" alt="YouTube Video Thumbnail 4" loading="lazy">
+            <div class="CardBody">
+              <p class="CardTitle">Video #4</p>
+              <p class="CardMeta">YouTube • Alternative Ways</p>
+            </div>
+          </a>
+
+          <a class="Card" href="https://www.youtube.com/watch?v=VIDEO_ID_5" target="_blank" rel="noopener" aria-label="Video 5">
+            <img class="Thumb" src="https://i.ytimg.com/vi/VIDEO_ID_5/hqdefault.jpg" alt="YouTube Video Thumbnail 5" loading="lazy">
+            <div class="CardBody">
+              <p class="CardTitle">Video #5</p>
+              <p class="CardMeta">YouTube • Alternative Ways</p>
+            </div>
+          </a>
+
+          <a class="Card" href="https://www.youtube.com/watch?v=VIDEO_ID_6" target="_blank" rel="noopener" aria-label="Video 6">
+            <img class="Thumb" src="https://i.ytimg.com/vi/VIDEO_ID_6/hqdefault.jpg" alt="YouTube Video Thumbnail 6" loading="lazy">
+            <div class="CardBody">
+              <p class="CardTitle">Video #6</p>
+              <p class="CardMeta">YouTube • Alternative Ways</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="Divider"></div>
+      </section>
+
+      <!-- RELEASES -->
+      <section class="Section" aria-label="Releases">
+        <div class="SectionHead">
+          <h2 class="SectionTitle">Releases</h2>
+          <p class="SectionHint">6 Covers, quadratisch. Dateinamen kannst du bei Bedarf anpassen.</p>
+        </div>
+
+        <div class="ReleaseGrid">
+          <a class="Release" href="#" aria-label="Astray EP 2020">
+            <img class="Cover" src="Resources/Releases/Astray.jpg" alt="Astray — EP (2020)" loading="lazy">
+            <div class="ReleaseBody">
+              <p class="ReleaseName">ASTRAY</p>
+              <p class="ReleaseMeta">EP • 2020</p>
+            </div>
+          </a>
+
+          <a class="Release" href="#" aria-label="Take The Step EP 2021">
+            <img class="Cover" src="Resources/Releases/TakeTheStep.jpg" alt="Take The Step — EP (2021)" loading="lazy">
+            <div class="ReleaseBody">
+              <p class="ReleaseName">Take The Step</p>
+              <p class="ReleaseMeta">EP • 2021</p>
+            </div>
+          </a>
+
+          <a class="Release" href="#" aria-label="Act I 2023">
+            <img class="Cover" src="Resources/Releases/ActI.jpg" alt="Act I — Album Section (2023)" loading="lazy">
+            <div class="ReleaseBody">
+              <p class="ReleaseName">Act I</p>
+              <p class="ReleaseMeta">Album Section • 2023</p>
+            </div>
+          </a>
+
+          <a class="Release" href="#" aria-label="Act II 2023">
+            <img class="Cover" src="Resources/Releases/ActII.jpg" alt="Act II — Album Section (2023)" loading="lazy">
+            <div class="ReleaseBody">
+              <p class="ReleaseName">Act II</p>
+              <p class="ReleaseMeta">Album Section • 2023</p>
+            </div>
+          </a>
+
+          <a class="Release" href="#" aria-label="Act III 2023">
+            <img class="Cover" src="Resources/Releases/ActIII.jpg" alt="Act III — Album Section (2023)" loading="lazy">
+            <div class="ReleaseBody">
+              <p class="ReleaseName">Act III</p>
+              <p class="ReleaseMeta">Album Section • 2023</p>
+            </div>
+          </a>
+
+          <a class="Release" href="#" aria-label="Demian 2023">
+            <img class="Cover" src="Resources/Releases/Demian.jpg" alt="Demian — Album (2023)" loading="lazy">
+            <div class="ReleaseBody">
+              <p class="ReleaseName">Demian</p>
+              <p class="ReleaseMeta">Album • 2023</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footbar partial -->
+  <div id="FootBar"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $("#HeadBar").load("FixedPages/HeadBar.html");
+    $("#FootBar").load("FixedPages/FootBar.html");
+  </script>
+</body>
+</html>

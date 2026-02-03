@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,42 +9,419 @@
   <link rel="icon" type="image/png" href="Resources/AW-Icon.png" />
   <meta name="theme-color" content="#070818" />
   <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
+
+  <style>
+    :root{
+      --topbarH: 78px;
+      --container: 1140px;
+
+      --bg0:#070818;
+      --bg1:#090a22;
+
+      --text: rgba(245,246,255,.94);
+      --muted: rgba(245,246,255,.68);
+
+      --border: rgba(245,246,255,.12);
+      --card: rgba(255,255,255,.05);
+
+      --violet: #7c3aed;
+      --cyan: #22d3ee;
+
+      --shadow: 0 22px 70px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background:
+        radial-gradient(1200px 700px at 20% -10%, rgba(124,58,237,.14), transparent 60%),
+        radial-gradient(900px 600px at 90% 10%, rgba(34,211,238,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      color: var(--text);
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+
+    /* =========================
+       HERO — Desktop: full-screen cinematic
+       Mobile: poster (full image visible, 100% width)
+       ========================= */
+    .HeroAW{
+      position: relative;
+
+      /* FULL BLEED */
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+
+      background: #070818;
+      border-bottom: 1px solid rgba(245,246,255,.08);
+      isolation: isolate;
+
+      /* Desktop default */
+      min-height: 100svh;
+    }
+
+    .HeroAW__media{
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .HeroAW__img{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;      /* Desktop: cinematic */
+      object-position: center;
+      display:block;
+      background: #070818;
+
+      transform: scale(1.03);
+      filter: saturate(1.08) contrast(1.08) brightness(.92);
+    }
+
+    .HeroAW__shade{
+      position:absolute;
+      inset: 0;
+      pointer-events:none;
+      background:
+        radial-gradient(1200px 700px at 70% 25%, rgba(124,58,237,.22), transparent 60%),
+        radial-gradient(900px 600px at 20% 20%, rgba(34,211,238,.12), transparent 55%),
+        linear-gradient(180deg,
+          rgba(7,8,24,.10) 0%,
+          rgba(7,8,24,.55) 55%,
+          rgba(7,8,24,.92) 92%,
+          rgba(7,8,24,.98) 100%
+        );
+    }
+
+    .HeroAW::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      pointer-events:none;
+      background: radial-gradient(900px 520px at 50% 20%, transparent 40%, rgba(0,0,0,.22) 75%, rgba(0,0,0,.45) 100%);
+      mix-blend-mode: multiply;
+      opacity: .85;
+    }
+
+    .HeroAW__content{
+      position: relative;
+      z-index: 3;
+
+      width: min(var(--container), calc(100% - 36px));
+      margin: 0 auto;
+
+      min-height: 100svh;
+      display: grid;
+      align-content: end;
+
+      padding: calc(var(--topbarH) + 28px) 0 64px;
+      gap: 12px;
+    }
+
+    .HeroAW__badge{
+      width: fit-content;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      height: 34px;
+      padding: 0 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(245,246,255,.92);
+      background: linear-gradient(90deg, rgba(124,58,237,.24), rgba(34,211,238,.18));
+      box-shadow: 0 0 0 1px rgba(245,246,255,.18) inset, 0 18px 50px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+
+      margin-left: 20px;
+    }
+    .HeroAW__badge::before{
+      content:"";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,.2));
+      box-shadow: 0 0 20px rgba(124,58,237,.65);
+      opacity: .95;
+    }
+
+    .HeroAW__title{
+      margin: 0;
+      margin-left: 20px;
+      font-size: clamp(30px, 5vw, 56px);
+      font-weight: 1000;
+      line-height: 1.03;
+      letter-spacing: .2px;
+      text-shadow: 0 16px 60px rgba(0,0,0,.65);
+    }
+    .HeroAW__title span{
+      background: linear-gradient(90deg, rgba(245,246,255,.98), rgba(245,246,255,.80));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .HeroAW__text{
+      margin: 0;
+      margin-left: 20px;
+      max-width: 72ch;
+      color: rgba(245,246,255,.80);
+      font-size: 15.8px;
+      line-height: 1.62;
+      text-shadow: 0 16px 60px rgba(0,0,0,.65);
+    }
+
+    /* =========================
+       MOBILE FIX: poster layout
+       - Image: 100% width, full visible (no crop)
+       - Content below image
+       ========================= */
+    @media (max-width: 720px){
+      .HeroAW{
+        min-height: unset;
+      }
+
+      .HeroAW__media{
+        position: relative;
+        inset: auto;
+      }
+
+      .HeroAW__img{
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: auto;          /* key */
+        object-fit: contain;   /* key */
+        transform: none;
+        filter: saturate(1.05) contrast(1.05) brightness(.95);
+      }
+
+      .HeroAW__content{
+        width: calc(100% - 28px);
+        min-height: unset;
+        padding: 16px 0 28px;
+        align-content: start;
+      }
+
+      .HeroAW__text{
+        font-size: 15.2px;
+      }
+    }
+
+    /* =========================
+       EVENTS
+       ========================= */
+    .Page{
+      width: min(var(--container), calc(100% - 36px));
+      margin: 0 auto;
+      padding: 34px 0 56px;
+    }
+
+    .SectionHead{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .SectionTitle{
+      margin: 0;
+      margin-left: 20px;
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: .2px;
+    }
+    .SectionSub{
+      margin: 0;
+      margin-left: 20px;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    .AWEvents{
+      border-radius: 22px;
+      border: 1px solid rgba(245,246,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    .AWEvents::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      pointer-events:none;
+      background:
+        radial-gradient(700px 380px at 20% 0%, rgba(124,58,237,.18), transparent 60%),
+        radial-gradient(700px 380px at 90% 20%, rgba(34,211,238,.10), transparent 60%);
+      opacity: .9;
+    }
+
+    .AWEvents__note{
+      position: relative;
+      z-index: 1;
+      padding: 14px 16px 12px;
+      color: rgba(245,246,255,.72);
+      font-size: 14px;
+      line-height: 1.45;
+      border-bottom: 1px solid rgba(245,246,255,.10);
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .AWEvents__list{
+      position: relative;
+      z-index: 1;
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .AWEvent{
+      border-radius: 18px;
+      border: 1px solid rgba(245,246,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 14px;
+      align-items: center;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .AWEvent::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background: linear-gradient(120deg, rgba(124,58,237,.14), transparent 40%, rgba(34,211,238,.10));
+      opacity: 0;
+      transition: opacity .18s ease;
+      pointer-events:none;
+    }
+    .AWEvent:hover{
+      transform: translateY(-2px);
+      border-color: rgba(245,246,255,.20);
+      background: rgba(255,255,255,.06);
+    }
+    .AWEvent:hover::before{ opacity: 1; }
+
+    .AWEvent__date{
+      border-radius: 16px;
+      padding: 12px 10px;
+      text-align: center;
+      border: 1px solid rgba(124,58,237,.30);
+      background: linear-gradient(180deg, rgba(124,58,237,.20), rgba(255,255,255,.04));
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+    }
+    .AWEvent__day{ font-size: 30px; font-weight: 1000; line-height: 1; }
+    .AWEvent__mon{
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: .95;
+    }
+    .AWEvent__year{ margin-top: 2px; font-size: 12px; color: rgba(245,246,255,.72); }
+
+    .AWEvent__name{
+      font-weight: 1000;
+      font-size: 16px;
+      line-height: 1.2;
+      letter-spacing: .2px;
+    }
+    .AWEvent__meta{
+      margin-top: 6px;
+      color: rgba(245,246,255,.82);
+      font-size: 13.5px;
+      line-height: 1.35;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .AWPill{
+      display:inline-flex;
+      align-items:center;
+      height: 26px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(245,246,255,.12);
+      background: rgba(0,0,0,.16);
+      color: rgba(245,246,255,.84);
+      font-weight: 850;
+      font-size: 12px;
+      letter-spacing: .2px;
+    }
+    .AWEvent__desc{
+      margin-top: 8px;
+      color: rgba(245,246,255,.66);
+      font-size: 13.5px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 720px){
+      .Page{ width: calc(100% - 28px); }
+      .AWEvents__list{ padding: 12px; }
+      .AWEvent{ grid-template-columns: 1fr; }
+      .AWEvent__date{
+        text-align: left;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .AWEvent__day{ font-size: 24px; }
+      .AWEvent__mon, .AWEvent__year{ margin-top: 0; }
+    }
+  </style>
 </head>
 
 <body>
   <!-- Header via FixedPages -->
   <div id="HeadBar"></div>
 
-  <!-- HERO (minimal, no buttons, image always full width visible) -->
+  <!-- HERO -->
   <section class="HeroAW" aria-label="Hero">
-    <img class="HeroAW__img" src="Resources/TitlePic.png" alt="" aria-hidden="true" />
-
-    <!-- overlay for readability -->
-    <div class="HeroAW__shade" aria-hidden="true"></div>
+    <div class="HeroAW__media" aria-hidden="true">
+      <img class="HeroAW__img" src="Resources/TitlePic.png" alt="" />
+      <div class="HeroAW__shade"></div>
+    </div>
 
     <div class="HeroAW__content">
       <div class="HeroAW__badge">ALTERNATIVE WAYS</div>
-
-      <h1 class="HeroAW__title">Progressive Metal from Speyer</h1>
-
-      <p class="HeroAW__text">
-        Hier könnte Ihre Werbung stehen
-      </p>
+      <h1 class="HeroAW__title"><span>Progressive Metal</span> from Speyer</h1>
+      <p class="HeroAW__text">Instrumental. Heavy. Precise.</p>
     </div>
   </section>
 
   <!-- EVENTS -->
   <main class="Page">
-    <section class="Section" aria-label="Events">
+    <section id="events" aria-label="Events">
       <div class="SectionHead">
-        <h2 class="SectionTitle">Live</h2>
-        <div class="SectionHint"></div>
+        <div>
+          <h2 class="SectionTitle">Hear us live</h2>
+          <p class="SectionSub">Next shows</p>
+        </div>
       </div>
 
       <div class="AWEvents">
-        <div class="AWEvents__note">
-          Upcoming gigs
-        </div>
+<!--         <div class="AWEvents__note">
+          If a date is still missing venue or tickets: updates hit Instagram first — then this page.
+        </div> -->
 
         <div class="AWEvents__list">
           <div class="AWEvent">
@@ -55,8 +432,12 @@
             </div>
             <div class="AWEvent__info">
               <div class="AWEvent__name">Alternative Ways — Live</div>
-              <div class="AWEvent__meta">19:00 • Stuttgart • Eintritt frei</div>
-              <div class="AWEvent__desc">Details folgen.</div>
+              <div class="AWEvent__meta">
+                <span class="AWPill">19:00</span>
+                <span class="AWPill">Stuttgart</span>
+                <span class="AWPill">Free entry</span>
+              </div>
+              <div class="AWEvent__desc">More details soon.</div>
             </div>
           </div>
 
@@ -68,8 +449,12 @@
             </div>
             <div class="AWEvent__info">
               <div class="AWEvent__name">Alternative Ways — Club Show</div>
-              <div class="AWEvent__meta">20:30 • Mannheim</div>
-              <div class="AWEvent__desc">Venue/Tickets kommen hier rein.</div>
+              <div class="AWEvent__meta">
+                <span class="AWPill">20:30</span>
+                <span class="AWPill">Mannheim</span>
+                <span class="AWPill">tba</span>
+              </div>
+              <div class="AWEvent__desc">Venue/tickets will be added here.</div>
             </div>
           </div>
 
@@ -81,10 +466,15 @@
             </div>
             <div class="AWEvent__info">
               <div class="AWEvent__name">Alternative Ways — Showcase</div>
-              <div class="AWEvent__meta">18:00 • Online</div>
-              <div class="AWEvent__desc">Stream-Link folgt.</div>
+              <div class="AWEvent__meta">
+                <span class="AWPill">18:00</span>
+                <span class="AWPill">Online</span>
+                <span class="AWPill">Stream</span>
+              </div>
+              <div class="AWEvent__desc">Stream link coming soon.</div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -95,191 +485,9 @@
 
   <!-- libs -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-  <!-- partials -->
   <script>
-    $("#HeadBar").load("FixedPages/HeadBar.html");
-    $("#FootBar").load("FixedPages/FootBar.html");
+    $("#HeadBar").load("FixedPages/HeadBar.html?cb=" + Date.now());
+    $("#FootBar").load("FixedPages/FootBar.html?cb=" + Date.now());
   </script>
-
-  <!-- Page-only Styles (minimal) -->
-  <style>
-    /* =========================
-       HERO AW — minimal
-       ========================= */
-    .HeroAW{
-      position: relative;
-      min-height: 100svh;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(238,240,255,.08);
-      padding-top: var(--topbarH); /* header height */
-      background: var(--bg0);
-    }
-
-    /* Image must always be fully visible in width:
-       width=100vw, height auto, no crop. */
-    .HeroAW__img{
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      height: auto;
-      display: block;
-    }
-
-    /* If image is not tall enough to fill the screen, we keep a dark base behind it */
-    .HeroAW__shade{
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(7,8,24,.10),
-        rgba(7,8,24,.72) 64%,
-        rgba(7,8,24,.94)
-      );
-      pointer-events: none;
-    }
-
-    .HeroAW__content{
-      position: relative;
-      z-index: 2;
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 44px 18px 42px;
-      padding-bottom: calc(42px + env(safe-area-inset-bottom, 0px));
-      display: grid;
-      gap: 10px;
-      align-content: end;
-      min-height: calc(100svh - var(--topbarH));
-    }
-
-    .HeroAW__badge{
-      width: fit-content;
-      display: inline-flex;
-      align-items: center;
-      height: 30px;
-      padding: 0 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 950;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-      color: rgba(238,240,255,.92);
-      background: rgba(238,240,255,.10);
-      box-shadow: 0 0 0 1px rgba(238,240,255,.14) inset;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .HeroAW__title{
-      margin: 0;
-      font-size: clamp(26px, 4.3vw, 44px);
-      font-weight: 950;
-      line-height: 1.06;
-      letter-spacing: .2px;
-    }
-
-    .HeroAW__text{
-      margin: 0;
-      max-width: 70ch;
-      color: rgba(238,240,255,.78);
-      font-size: 15.5px;
-      line-height: 1.55;
-    }
-
-    /* Mobile: content should start earlier (higher) */
-    @media (max-width: 720px){
-      .HeroAW__content{
-        padding: 28px 14px 70px;
-        padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
-      }
-    }
-
-    /* =========================
-       EVENTS — minimal
-       ========================= */
-    .AWEvents{
-      margin-top: 14px;
-      border-radius: 18px;
-      border: 1px solid rgba(238,240,255,.10);
-      background: rgba(238,240,255,.03);
-      box-shadow: 0 0 0 1px rgba(0,0,0,.12) inset;
-      overflow: hidden;
-    }
-
-    .AWEvents__note{
-      padding: 14px 14px 12px;
-      color: rgba(238,240,255,.72);
-      font-size: 14px;
-      line-height: 1.45;
-      border-bottom: 1px solid rgba(238,240,255,.08);
-    }
-
-    .AWEvents__list{
-      padding: 10px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .AWEvent{
-      border-radius: 16px;
-      border: 1px solid rgba(238,240,255,.10);
-      background: rgba(238,240,255,.04);
-      padding: 12px;
-      display: grid;
-      grid-template-columns: 92px 1fr;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .AWEvent__date{
-      border-radius: 14px;
-      padding: 10px 8px;
-      text-align: center;
-      border: 1px solid rgba(124,92,255,.22);
-      background: rgba(124,92,255,.10);
-      box-shadow: 0 0 0 1px rgba(0,0,0,.18) inset;
-    }
-    .AWEvent__day{ font-size: 26px; font-weight: 950; line-height: 1; }
-    .AWEvent__mon{
-      margin-top: 6px;
-      font-size: 12px;
-      font-weight: 950;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-      opacity: .92;
-    }
-    .AWEvent__year{ margin-top: 2px; font-size: 12px; color: rgba(238,240,255,.72); }
-
-    .AWEvent__name{
-      font-weight: 950;
-      font-size: 15.5px;
-      line-height: 1.2;
-    }
-    .AWEvent__meta{
-      margin-top: 6px;
-      color: rgba(238,240,255,.78);
-      font-size: 13.5px;
-      line-height: 1.35;
-    }
-    .AWEvent__desc{
-      margin-top: 8px;
-      color: rgba(238,240,255,.65);
-      font-size: 13.5px;
-      line-height: 1.4;
-    }
-
-    @media (max-width: 720px){
-      .AWEvent{ grid-template-columns: 1fr; }
-      .AWEvent__date{
-        text-align: left;
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-      .AWEvent__day{ font-size: 22px; }
-      .AWEvent__mon, .AWEvent__year{ margin-top: 0; }
-    }
-  </style>
 </body>
 </html>

@@ -8,69 +8,61 @@
   </a>
 
   <!-- Desktop Nav -->
-  <nav class="MenuBar__nav" aria-label="Hauptnavigation">
-    <a class="MenuBarItem" href="index.html" data-nav="index">Home</a>
+  <nav class="MenuBar__nav" aria-label="Main navigation">
+    <a class="MenuBarItem" href="index.html" data-nav="home">Home</a>
     <a class="MenuBarItem" href="about.html" data-nav="about">About</a>
-
-    <div class="MenuBarDrop">
-      <a class="MenuBarItem" href="services.html" data-nav="services">
-        Services <span class="MenuBarChevron">▾</span>
-      </a>
-      <div class="MenuBarDrop__panel" role="menu" aria-label="Services Submenu">
-        <a class="DropItem" href="services.html#coaching">Coaching</a>
-        <a class="DropItem" href="services.html#workshops">Workshops</a>
-        <a class="DropItem" href="services.html#booking">Booking</a>
-      </div>
-    </div>
-
-    <a class="MenuBarItem" href="contact.html" data-nav="contact">Contact</a>
+    <a class="MenuBarItem" href="media.html" data-nav="media">Media</a>
+    <a class="MenuBarItem" href="downloads.html" data-nav="downloads">Downloads</a>
   </nav>
 
   <!-- Desktop CTA -->
   <div class="MenuBar__cta">
-    <a class="Btn Btn--accent" href="contact.html">Anfragen</a>
+    <a class="Btn Btn--accent" href="contact.html">Contact Us</a>
   </div>
 
   <!-- Burger Button -->
-  <label class="BurgerBtn" for="navToggle" aria-label="Menü öffnen">
+  <label class="BurgerBtn" for="navToggle" aria-label="Open menu">
     <span></span><span></span><span></span>
   </label>
 
   <!-- Overlay + Drawer -->
   <label class="NavOverlay" for="navToggle" aria-hidden="true"></label>
 
-  <aside class="MobileNav" aria-label="Mobile Navigation">
+  <aside class="MobileNav" aria-label="Mobile navigation">
     <div class="MobileNav__top">
       <div class="MobileNav__title">MENU</div>
-      <label class="MobileNav__close" for="navToggle" aria-label="Menü schließen">✕</label>
+      <label class="MobileNav__close" for="navToggle" aria-label="Close menu">✕</label>
     </div>
 
     <div class="MobileNav__links">
       <a class="MobileLink" href="index.html">Home</a>
       <a class="MobileLink" href="about.html">About</a>
-      <a class="MobileLink" href="services.html">Services</a>
-      <a class="MobileLink" href="contact.html">Contact</a>
+      <a class="MobileLink" href="media.html">Media</a>
+      <a class="MobileLink" href="downloads.html">Downloads</a>
 
-      <a class="MobileCTA" href="contact.html">Anfragen</a>
+      <a class="MobileCTA" href="contact.html">Contact Us</a>
     </div>
   </aside>
 </header>
 
 <script>
-  // Active-Nav markieren (wie FG: simpel, robust)
+  // Active nav marker (simple & robust)
   (function(){
     const p = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+
     document.querySelectorAll(".MenuBarItem[data-nav]").forEach(a => a.classList.remove("is-active"));
 
     const map = {
-      "index.html":"index",
+      "index.html":"home",
       "about.html":"about",
-      "services.html":"services",
-      "contact.html":"contact"
+      "media.html":"media",
+      "downloads.html":"downloads",
+      "contact.html": null
     };
 
     const key = map[p];
     if (!key) return;
+
     const el = document.querySelector(`.MenuBarItem[data-nav="${key}"]`);
     if (el) el.classList.add("is-active");
   })();
