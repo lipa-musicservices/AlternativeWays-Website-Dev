@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alternative Ways | Contact</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="Resources/AW-Icon.png" />
+  <meta name="theme-color" content="#070818" />
+  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
+
+  <style>
+    /* =========================================
+       CONTACT — page-only styles
+       (HeadBar + FootBar bleiben extern!)
+       ========================================= */
+    :root{
+      --bg0:#070818;
+      --bg1:#0b0f2a;
+      --text: rgba(238,240,255,.94);
+      --muted: rgba(238,240,255,.72);
+      --border: rgba(238,240,255,.10);
+      --card: rgba(238,240,255,.04);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --container: 1140px;
+      --topbarH: 78px;
+      --accent: #7C3AED;
+      --accent2:#22D3EE;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(34,211,238,.18), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+    }
+    a{ color:inherit; text-decoration:none; }
+
+    .Page{
+      padding-top: var(--topbarH);
+      min-height: 100vh;
+      width:100%;
+    }
+    .Wrap{
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .Hero{
+      position: relative;
+      margin-top: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(238,240,255,.12);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background:
+        radial-gradient(900px 520px at 20% 20%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(900px 520px at 80% 30%, rgba(34,211,238,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.25));
+    }
+    .Hero__inner{
+      padding: 22px 22px 18px;
+      display:grid;
+      gap: 12px;
+    }
+
+    .Kicker{
+      width: fit-content;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(238,240,255,.14);
+      background: rgba(238,240,255,.06);
+      color: rgba(238,240,255,.86);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .9px;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .Kicker__dot{
+      width: 7px; height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 6px rgba(124,58,237,.14);
+    }
+
+    .Hero__title{
+      margin: 0;
+      font-weight: 1000;
+      letter-spacing: -0.02em;
+      font-size: clamp(28px, 3.8vw, 46px);
+      line-height: 1.05;
+      text-shadow: 0 18px 60px rgba(0,0,0,.55);
+    }
+    .Hero__lead{
+      margin: 0;
+      max-width: 78ch;
+      color: rgba(238,240,255,.82);
+      font-size: 15.5px;
+      line-height: 1.55;
+    }
+
+    .BtnRow{
+      margin-top: 6px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+    }
+    .Btn{
+      height: 40px;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 0 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(238,240,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(238,240,255,.92);
+      font-weight: 950;
+      letter-spacing: .2px;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      white-space: nowrap;
+    }
+    .Btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.10);
+      border-color: rgba(238,240,255,.22);
+    }
+    .Btn--primary{
+      border-color: rgba(124,58,237,.40);
+      background: linear-gradient(90deg, rgba(124,58,237,.45), rgba(34,211,238,.20));
+    }
+
+    /* LAYOUT */
+    .Section{ padding: 18px 0 26px; }
+    .Grid{
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 12px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .Grid{ grid-template-columns: 1fr; }
+    }
+
+    .Card{
+      border-radius: 18px;
+      border: 1px solid rgba(238,240,255,.10);
+      background: rgba(238,240,255,.03);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.14) inset;
+      overflow:hidden;
+    }
+    .Card__inner{ padding: 16px; }
+
+    .Card h2{
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 1000;
+      letter-spacing: .2px;
+    }
+    .Card p{
+      margin: 0 0 12px;
+      color: rgba(238,240,255,.74);
+      line-height: 1.65;
+      font-size: 14.6px;
+    }
+    .Divider{
+      height: 1px;
+      background: rgba(238,240,255,.08);
+      margin: 14px 0;
+    }
+
+    /* FORM */
+    .Form{
+      display:grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .Row2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 560px){
+      .Row2{ grid-template-columns: 1fr; }
+    }
+
+    .Field{
+      display:grid;
+      gap: 6px;
+    }
+    .Label{
+      font-weight: 950;
+      letter-spacing: .2px;
+      font-size: 12.5px;
+      color: rgba(238,240,255,.82);
+      text-transform: uppercase;
+    }
+    .Input, .Textarea, .Select{
+      width: 100%;
+      border: 1px solid rgba(238,240,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(238,240,255,.94);
+      border-radius: 14px;
+      padding: 11px 12px;
+      outline: none;
+      font-weight: 800;
+      letter-spacing: .2px;
+      font-size: 14px;
+      transition: border-color .15s ease, background .15s ease, transform .15s ease;
+    }
+    .Textarea{ min-height: 150px; resize: vertical; }
+    .Input:focus, .Textarea:focus, .Select:focus{
+      border-color: rgba(34,211,238,.35);
+      background: rgba(255,255,255,.075);
+    }
+    .Help{
+      color: rgba(238,240,255,.62);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .Actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      margin-top: 2px;
+    }
+    .Submit{
+      height: 42px;
+      padding: 0 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(34,211,238,.30);
+      background: linear-gradient(90deg, rgba(124,58,237,.35), rgba(34,211,238,.20));
+      color: rgba(238,240,255,.95);
+      font-weight: 1000;
+      letter-spacing: .2px;
+      cursor:pointer;
+      transition: transform .18s ease, filter .18s ease, border-color .18s ease;
+    }
+    .Submit:hover{ transform: translateY(-1px); border-color: rgba(34,211,238,.40); }
+    .Submit:disabled{ opacity:.6; cursor:not-allowed; transform:none; }
+
+    .Ghost{
+      height: 42px;
+      padding: 0 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(238,240,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(238,240,255,.92);
+      font-weight: 950;
+      letter-spacing: .2px;
+      cursor:pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .Ghost:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.10);
+      border-color: rgba(238,240,255,.22);
+    }
+
+    .Status{
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px dashed rgba(238,240,255,.16);
+      background: rgba(0,0,0,.14);
+      color: rgba(238,240,255,.78);
+      font-size: 13.6px;
+      line-height: 1.5;
+      display:none;
+    }
+    .Status.is-on{ display:block; }
+
+    /* Side mini list */
+    .MiniList{
+      display:grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .MiniItem{
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(238,240,255,.10);
+      background: rgba(238,240,255,.03);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.14) inset;
+    }
+    .MiniItem b{
+      display:block;
+      font-weight: 1000;
+      margin-bottom: 6px;
+      letter-spacing: .2px;
+    }
+    .MiniItem span{
+      color: rgba(238,240,255,.72);
+      font-size: 13.8px;
+      line-height: 1.45;
+      display:block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="HeadBar"></div>
+
+  <main class="Page">
+    <div class="Wrap">
+
+      <section class="Hero" aria-label="Contact Hero">
+        <div class="Hero__inner">
+          <div class="Kicker"><span class="Kicker__dot" aria-hidden="true"></span>Alternative Ways • Contact</div>
+          <h1 class="Hero__title">Send us a message</h1>
+          <p class="Hero__lead">
+            Booking, Support-Slots, Collabs, Press. Maybe what you're searching is here:
+          </p>
+
+          <div class="BtnRow" aria-label="Quick actions">
+            <a class="Btn" href="downloads.html">Downloads</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="Section" aria-label="Contact Content">
+        <div class="Grid">
+
+          <!-- FORM CARD -->
+          <article class="Card">
+            <div class="Card__inner">
+              <h2>Contact-Form</h2>
+              <p>
+                <!-- Je mehr Kontext du gibst (Datum/Ort, Slot-Länge, Technik), desto schneller können wir sauber antworten. -->
+              </p>
+
+              <form id="contactForm" class="Form" autocomplete="on" novalidate>
+                <!-- Honeypot (unsichtbar, Bots fangen) -->
+                <div style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">
+                  <label>Leave this field empty</label>
+                  <input type="text" id="company" name="company" tabindex="-1" autocomplete="off" />
+                </div>
+
+                <div class="Row2">
+                  <div class="Field">
+                    <div class="Label">Name *</div>
+                    <input class="Input" type="text" id="name" name="name" placeholder="Dein Name" required />
+                  </div>
+
+                  <div class="Field">
+                    <div class="Label">E-Mail *</div>
+                    <input class="Input" type="email" id="email" name="email" placeholder="name@mail.de" required />
+                  </div>
+                </div>
+
+                <div class="Row2">
+                  <div class="Field">
+                    <div class="Label">Topic *</div>
+                    <select class="Select" id="topic" name="topic" required>
+                      <option value="" selected disabled>Please choose</option>
+                      <option>Booking</option>
+                      <option>Support Slot</option>
+                      <option>Festival / Club</option>
+                      <option>Press</option>
+                      <option>Collab</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+
+<!--                   <div class="Field">
+                    <div class="Label">Datum (optional)</div>
+                    <input class="Input" type="date" id="date" name="date" />
+                    <div class="Help">Für Booking/Shows hilfreich.</div>
+                  </div> -->
+                </div>
+
+                <div class="Field">
+                  <div class="Label">Message *</div>
+                  <textarea class="Textarea" id="message" name="message" placeholder="Location, Zeitfenster, Backline, Budgetrahmen – alles rein, was hilft." required></textarea>
+                </div>
+
+                <div class="Actions">
+                  <button class="Submit" id="sendBtn" type="submit">Senden</button>
+                  <button class="Ghost" type="button" id="resetBtn">Zurücksetzen</button>
+                </div>
+
+                <div class="Status" id="status" role="status" aria-live="polite"></div>
+
+<!--                 <div class="Help">
+                  Hinweis: Ohne Backend wird nichts verschickt – aber UI/Validierung ist schon da.
+                </div> -->
+              </form>
+            </div>
+          </article>
+
+          <!-- SIDE CARD -->
+          <aside class="Card">
+            <div class="Card__inner">
+              <h2>Direktlinks</h2>
+              <p>Wenn du lieber „kurz klicken“ willst:</p>
+
+              <div class="MiniList">
+                <div class="MiniItem">
+                  <b>Media</b>
+                  <span>Videos & Releases: alles an einem Ort.</span>
+                  <div style="margin-top:10px;">
+                    <a class="Btn" style="height:38px;" href="media.html">Media öffnen</a>
+                  </div>
+                </div>
+
+                <div class="MiniItem">
+                  <b>Downloads</b>
+                  <span>Presskit / Assets / Stageplot – wenn vorhanden.</span>
+                  <div style="margin-top:10px;">
+                    <a class="Btn" style="height:38px;" href="downloads.html">Downloads öffnen</a>
+                  </div>
+                </div>
+
+                <div class="MiniItem">
+                  <b>YouTube</b>
+                  <span>Channel & aktueller Stuff.</span>
+                  <div style="margin-top:10px;">
+                    <a class="Btn" style="height:38px;" href="https://www.youtube.com/@alternativewaysband" target="_blank" rel="noopener">YouTube</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="Divider"></div>
+
+              <p class="Help">
+                Backend bauen wir easy als nächstes (Google Apps Script → Mail + Logsheet).
+                Dann bleibt das hier 1:1, nur “fetch()” kommt rein.
+              </p>
+            </div>
+          </aside>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="FootBar"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $("#HeadBar").load("FixedPages/HeadBar.html");
+    $("#FootBar").load("FixedPages/FootBar.html");
+  </script>
+
+  <script>
+    (function(){
+      const form = document.getElementById("contactForm");
+      const status = document.getElementById("status");
+      const sendBtn = document.getElementById("sendBtn");
+      const resetBtn = document.getElementById("resetBtn");
+
+      function show(msg){
+        status.textContent = msg;
+        status.classList.add("is-on");
+      }
+      function hide(){
+        status.textContent = "";
+        status.classList.remove("is-on");
+      }
+
+      resetBtn.addEventListener("click", () => {
+        form.reset();
+        hide();
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        hide();
+
+        // Honeypot: wenn gefüllt -> Bot
+        const hp = document.getElementById("company");
+        if(hp && hp.value.trim()){
+          show("Nice try. 😄");
+          return;
+        }
+
+        // Simple validation
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const topic = document.getElementById("topic").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if(!name || !email || !topic || !message){
+          show("Bitte die Pflichtfelder ausfüllen (Name, E-Mail, Anfrage, Nachricht).");
+          return;
+        }
+
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        if(!emailOk){
+          show("E-Mail sieht komisch aus. Check nochmal kurz.");
+          return;
+        }
+
+        // Fake send (ohne Backend)
+        sendBtn.disabled = true;
+        sendBtn.textContent = "Sende…";
+
+        setTimeout(() => {
+          sendBtn.disabled = false;
+          sendBtn.textContent = "Senden";
+          show("✅ Gesendet (Mock). Backend kommt als nächstes – aktuell wird noch nichts verschickt.");
+        }, 650);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -13,19 +13,24 @@
   <style>
     /* =========================================
        MEDIA — page-only styles
-       (HeadBar + FootBar bleiben extern!)
+       HeadBar + FootBar bleiben extern!
        ========================================= */
     :root{
       --bg0:#070818;
       --bg1:#0b0f2a;
+
       --text: rgba(238,240,255,.94);
       --muted: rgba(238,240,255,.72);
+
       --border: rgba(238,240,255,.10);
       --card: rgba(238,240,255,.04);
+
       --shadow: 0 18px 60px rgba(0,0,0,.55);
+
       --radius: 18px;
       --container: 1140px;
       --topbarH: 78px;
+
       --accent: #7C3AED;
       --accent2:#22D3EE;
     }
@@ -41,7 +46,6 @@
       overflow-x:hidden;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
     }
-
     a{ color:inherit; text-decoration:none; }
 
     .Page{
@@ -52,14 +56,6 @@
     .Wrap{
       width: min(var(--container), calc(100% - 40px));
       margin: 0 auto;
-    }
-
-    /* FOOTBAR: bleibt aus FootBar.html (Fix nur fürs Einspannen) */
-    #FootBar{ width:100%; }
-    #FootBar .FootBar{
-      width: 100vw !important;
-      margin-left: calc(50% - 50vw) !important;
-      margin-right: 0 !important;
     }
 
     /* ---------- HERO ---------- */
@@ -130,7 +126,6 @@
       gap: 10px;
       align-items:center;
     }
-
     .Btn{
       height: 40px;
       display:inline-flex;
@@ -200,6 +195,7 @@
       color: rgba(238,240,255,.68);
       font-size: 13.5px;
       line-height: 1.4;
+      text-align: right;
     }
 
     /* ---------- VIDEO GRID ---------- */
@@ -210,6 +206,8 @@
     }
     @media (max-width: 980px){
       .Grid{ grid-template-columns: repeat(2, 1fr); }
+      .SectionHead{ flex-direction: column; align-items: flex-start; }
+      .SectionHint{ text-align:left; }
     }
     @media (max-width: 560px){
       .Grid{ grid-template-columns: 1fr; }
@@ -247,6 +245,9 @@
       letter-spacing: .2px;
       font-size: 14.5px;
       line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .CardMeta{
       margin:0;
@@ -258,11 +259,8 @@
     /* ---------- RELEASES (square) ---------- */
     .ReleaseGrid{
       display:grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-    }
-    @media (max-width: 1100px){
-      .ReleaseGrid{ grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 560px){
       .ReleaseGrid{ grid-template-columns: repeat(2, 1fr); }
@@ -284,7 +282,7 @@
 
     .Cover{
       width:100%;
-      aspect-ratio: 1 / 1; /* ✅ square */
+      aspect-ratio: 1 / 1;
       object-fit: cover;
       display:block;
     }
@@ -326,8 +324,7 @@
           <div class="Kicker"><span class="Kicker__dot" aria-hidden="true"></span>Alternative Ways • Media</div>
           <h1 class="MediaHero__title">Videos, Live-Momente & Releases.</h1>
           <p class="MediaHero__lead">
-            Hier findest du unseren YouTube-Kram auf einen Blick – plus Cover / Releases als schnelle Übersicht.
-            Kein Gelaber, nur Zeug zum Anschauen und Anhören.
+            Hier findest du unseren YouTube-Kram
           </p>
 
           <div class="BtnRow" aria-label="Main links">
@@ -350,64 +347,61 @@
       <!-- VIDEOS -->
       <section class="Section" aria-label="YouTube Videos">
         <div class="SectionHead">
-          <h2 class="SectionTitle">YouTube Picks</h2>
-          <p class="SectionHint">
-            ✅ Ersetze nur die Video-IDs: <b>VIDEO_ID_1</b> … <b>VIDEO_ID_6</b> (steht im Code drin).
-          </p>
+          <h2 class="SectionTitle">YouTube</h2>
+          <p class="SectionHint"></p>
         </div>
 
         <div class="Grid">
-          <!-- =========
-               VIDEO SLOTS
-               Anleitung:
-               1) Öffne ein Video → URL sieht z.B. so aus: https://www.youtube.com/watch?v=ABC123xyz
-               2) ABC123xyz ist die Video-ID → in href + Thumbnail einsetzen
-               ========= -->
-
-          <a class="Card" href="https://www.youtube.com/watch?v=VIDEO_ID_1" target="_blank" rel="noopener" aria-label="Video 1">
-            <img class="Thumb" src="https://i.ytimg.com/vi/VIDEO_ID_1/hqdefault.jpg" alt="YouTube Video Thumbnail 1" loading="lazy">
+          <a class="Card VideoCard" data-yt="KP5QzK2dgD8"
+             href="https://www.youtube.com/watch?v=KP5QzK2dgD8" target="_blank" rel="noopener" aria-label="YouTube Video">
+            <img class="Thumb" src="https://i.ytimg.com/vi/KP5QzK2dgD8/hqdefault.jpg" alt="YouTube Thumbnail" loading="lazy">
             <div class="CardBody">
-              <p class="CardTitle">Video #1</p>
+              <p class="CardTitle">Video lädt…</p>
               <p class="CardMeta">YouTube • Alternative Ways</p>
             </div>
           </a>
 
-          <a class="Card" href="https://www.youtube.com/watch?v=VIDEO_ID_2" target="_blank" rel="noopener" aria-label="Video 2">
-            <img class="Thumb" src="https://i.ytimg.com/vi/VIDEO_ID_2/hqdefault.jpg" alt="YouTube Video Thumbnail 2" loading="lazy">
+          <a class="Card VideoCard" data-yt="BBldRDzA_wc"
+             href="https://www.youtube.com/watch?v=BBldRDzA_wc" target="_blank" rel="noopener" aria-label="YouTube Video">
+            <img class="Thumb" src="https://i.ytimg.com/vi/BBldRDzA_wc/hqdefault.jpg" alt="YouTube Thumbnail" loading="lazy">
             <div class="CardBody">
-              <p class="CardTitle">Video #2</p>
+              <p class="CardTitle">Video lädt…</p>
               <p class="CardMeta">YouTube • Alternative Ways</p>
             </div>
           </a>
 
-          <a class="Card" href="https://www.youtube.com/watch?v=VIDEO_ID_3" target="_blank" rel="noopener" aria-label="Video 3">
-            <img class="Thumb" src="https://i.ytimg.com/vi/VIDEO_ID_3/hqdefault.jpg" alt="YouTube Video Thumbnail 3" loading="lazy">
+          <a class="Card VideoCard" data-yt="URlV13LLRHY"
+             href="https://www.youtube.com/watch?v=URlV13LLRHY" target="_blank" rel="noopener" aria-label="YouTube Video">
+            <img class="Thumb" src="https://i.ytimg.com/vi/URlV13LLRHY/hqdefault.jpg" alt="YouTube Thumbnail" loading="lazy">
             <div class="CardBody">
-              <p class="CardTitle">Video #3</p>
+              <p class="CardTitle">Video lädt…</p>
               <p class="CardMeta">YouTube • Alternative Ways</p>
             </div>
           </a>
 
-          <a class="Card" href="https://www.youtube.com/watch?v=VIDEO_ID_4" target="_blank" rel="noopener" aria-label="Video 4">
-            <img class="Thumb" src="https://i.ytimg.com/vi/VIDEO_ID_4/hqdefault.jpg" alt="YouTube Video Thumbnail 4" loading="lazy">
+          <a class="Card VideoCard" data-yt="n_BBDOigPJA"
+             href="https://www.youtube.com/watch?v=n_BBDOigPJA" target="_blank" rel="noopener" aria-label="YouTube Video">
+            <img class="Thumb" src="https://i.ytimg.com/vi/n_BBDOigPJA/hqdefault.jpg" alt="YouTube Thumbnail" loading="lazy">
             <div class="CardBody">
-              <p class="CardTitle">Video #4</p>
+              <p class="CardTitle">Video lädt…</p>
               <p class="CardMeta">YouTube • Alternative Ways</p>
             </div>
           </a>
 
-          <a class="Card" href="https://www.youtube.com/watch?v=VIDEO_ID_5" target="_blank" rel="noopener" aria-label="Video 5">
-            <img class="Thumb" src="https://i.ytimg.com/vi/VIDEO_ID_5/hqdefault.jpg" alt="YouTube Video Thumbnail 5" loading="lazy">
+          <a class="Card VideoCard" data-yt="uTxJ3cZfKbc"
+             href="https://www.youtube.com/watch?v=uTxJ3cZfKbc" target="_blank" rel="noopener" aria-label="YouTube Video">
+            <img class="Thumb" src="https://i.ytimg.com/vi/uTxJ3cZfKbc/hqdefault.jpg" alt="YouTube Thumbnail" loading="lazy">
             <div class="CardBody">
-              <p class="CardTitle">Video #5</p>
+              <p class="CardTitle">Video lädt…</p>
               <p class="CardMeta">YouTube • Alternative Ways</p>
             </div>
           </a>
 
-          <a class="Card" href="https://www.youtube.com/watch?v=VIDEO_ID_6" target="_blank" rel="noopener" aria-label="Video 6">
-            <img class="Thumb" src="https://i.ytimg.com/vi/VIDEO_ID_6/hqdefault.jpg" alt="YouTube Video Thumbnail 6" loading="lazy">
+          <a class="Card VideoCard" data-yt="BikLymvVH9M"
+             href="https://www.youtube.com/watch?v=BikLymvVH9M" target="_blank" rel="noopener" aria-label="YouTube Video">
+            <img class="Thumb" src="https://i.ytimg.com/vi/BikLymvVH9M/hqdefault.jpg" alt="YouTube Thumbnail" loading="lazy">
             <div class="CardBody">
-              <p class="CardTitle">Video #6</p>
+              <p class="CardTitle">Video lädt…</p>
               <p class="CardMeta">YouTube • Alternative Ways</p>
             </div>
           </a>
@@ -420,55 +414,31 @@
       <section class="Section" aria-label="Releases">
         <div class="SectionHead">
           <h2 class="SectionTitle">Releases</h2>
-          <p class="SectionHint">6 Covers, quadratisch. Dateinamen kannst du bei Bedarf anpassen.</p>
+          <p class="SectionHint"><!-- Quadratische PNGs aus <b>Resources/Releases</b> (Folie1–Folie3). --></p>
         </div>
 
         <div class="ReleaseGrid">
-          <a class="Release" href="#" aria-label="Astray EP 2020">
-            <img class="Cover" src="Resources/Releases/Astray.jpg" alt="Astray — EP (2020)" loading="lazy">
+          <a class="Release" href="#" aria-label="Release 1">
+            <img class="Cover" src="Resources/Releases/Folie1.PNG" alt="Release Cover 1" loading="lazy">
             <div class="ReleaseBody">
-              <p class="ReleaseName">ASTRAY</p>
-              <p class="ReleaseMeta">EP • 2020</p>
+              <p class="ReleaseName">Release #1</p>
+              <p class="ReleaseMeta">Folie1</p>
             </div>
           </a>
 
-          <a class="Release" href="#" aria-label="Take The Step EP 2021">
-            <img class="Cover" src="Resources/Releases/TakeTheStep.jpg" alt="Take The Step — EP (2021)" loading="lazy">
+          <a class="Release" href="#" aria-label="Release 2">
+            <img class="Cover" src="Resources/Releases/Folie2.PNG" alt="Release Cover 2" loading="lazy">
             <div class="ReleaseBody">
-              <p class="ReleaseName">Take The Step</p>
-              <p class="ReleaseMeta">EP • 2021</p>
+              <p class="ReleaseName">Release #2</p>
+              <p class="ReleaseMeta">Folie2</p>
             </div>
           </a>
 
-          <a class="Release" href="#" aria-label="Act I 2023">
-            <img class="Cover" src="Resources/Releases/ActI.jpg" alt="Act I — Album Section (2023)" loading="lazy">
+          <a class="Release" href="#" aria-label="Release 3">
+            <img class="Cover" src="Resources/Releases/Folie3.PNG" alt="Release Cover 3" loading="lazy">
             <div class="ReleaseBody">
-              <p class="ReleaseName">Act I</p>
-              <p class="ReleaseMeta">Album Section • 2023</p>
-            </div>
-          </a>
-
-          <a class="Release" href="#" aria-label="Act II 2023">
-            <img class="Cover" src="Resources/Releases/ActII.jpg" alt="Act II — Album Section (2023)" loading="lazy">
-            <div class="ReleaseBody">
-              <p class="ReleaseName">Act II</p>
-              <p class="ReleaseMeta">Album Section • 2023</p>
-            </div>
-          </a>
-
-          <a class="Release" href="#" aria-label="Act III 2023">
-            <img class="Cover" src="Resources/Releases/ActIII.jpg" alt="Act III — Album Section (2023)" loading="lazy">
-            <div class="ReleaseBody">
-              <p class="ReleaseName">Act III</p>
-              <p class="ReleaseMeta">Album Section • 2023</p>
-            </div>
-          </a>
-
-          <a class="Release" href="#" aria-label="Demian 2023">
-            <img class="Cover" src="Resources/Releases/Demian.jpg" alt="Demian — Album (2023)" loading="lazy">
-            <div class="ReleaseBody">
-              <p class="ReleaseName">Demian</p>
-              <p class="ReleaseMeta">Album • 2023</p>
+              <p class="ReleaseName">Release #3</p>
+              <p class="ReleaseMeta">Folie3</p>
             </div>
           </a>
         </div>
@@ -484,6 +454,38 @@
   <script>
     $("#HeadBar").load("FixedPages/HeadBar.html");
     $("#FootBar").load("FixedPages/FootBar.html");
+
+    // ✅ Titel automatisch laden (ohne API-Key) via YouTube oEmbed
+    (async function(){
+      const cards = document.querySelectorAll(".VideoCard");
+
+      for (const card of cards){
+        const id = card.getAttribute("data-yt");
+        const titleEl = card.querySelector(".CardTitle");
+        if(!id || !titleEl) continue;
+
+        const videoUrl = "https://www.youtube.com/watch?v=" + encodeURIComponent(id);
+        const oembed = "https://www.youtube.com/oembed?format=json&url=" + encodeURIComponent(videoUrl);
+
+        try{
+          const res = await fetch(oembed, { method:"GET" });
+          if(!res.ok) throw new Error("oEmbed HTTP " + res.status);
+          const data = await res.json();
+
+          const t = (data && data.title) ? data.title.trim() : "";
+          if(t){
+            titleEl.textContent = t;
+            titleEl.title = t;
+            card.setAttribute("aria-label", t);
+          }else{
+            titleEl.textContent = "YouTube Video";
+          }
+        }catch(err){
+          // Fallback (falls CORS/Netzwerk blockiert)
+          titleEl.textContent = "YouTube Video";
+        }
+      }
+    })();
   </script>
 </body>
 </html>

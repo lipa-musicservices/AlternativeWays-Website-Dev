@@ -497,115 +497,270 @@ a{ color: inherit; }
   .Hero__actions .Btn{ width: 100%; }
 }
 
-/* -------------------------
-   FOOTER (FG)
-------------------------- */
-.FootBar{
-  margin-top: 60px;
-  padding: 26px 18px 18px;
-  background:
-    radial-gradient(900px 220px at 20% 0%, rgba(var(--accentRgb), .08), transparent 60%),
-    linear-gradient(180deg, rgba(10,6,32,0), rgba(10,6,32,.75) 45%, rgba(10,6,32,.96));
-  border-top: 1px solid rgba(238,240,255,.08);
-}
+  /* =========================
+     FOOTBAR v3 — clean, wide, consistent
+     ========================= */
 
-.FootBar__inner{
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 22px 6px 14px;
-  display: grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap: 22px;
-  align-items: start;
-}
+  .FootBar{
+    position: relative;
+    margin-top: 60px;
 
-.FootCol{ min-width: 0; }
+    /* wichtig: Hintergrund über volle Breite */
+    width: 100%;
+    border-top: 1px solid rgba(245,246,255,.10);
 
-.FootCol--brand{
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
+    background:
+      radial-gradient(1100px 520px at 12% 0%, rgba(124,58,237,.22), transparent 62%),
+      radial-gradient(1000px 520px at 92% 10%, rgba(34,211,238,.16), transparent 60%),
+      linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.22));
 
-.FooterLogo{
-  height: 54px;
-  width: auto;
-  filter: drop-shadow(0 12px 26px rgba(0,0,0,.45));
-}
+    overflow: hidden;
+    isolation: isolate;
+  }
 
-.FooterTitle{
-  font-weight: 950;
-  letter-spacing: .7px;
-  text-transform: uppercase;
-  font-size: 13px;
-  opacity: .95;
-}
+  /* weichere Vignette, weniger "Balken-Gefühl" */
+  .FootBar::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    pointer-events:none;
+    background:
+      radial-gradient(1200px 520px at 50% 0%, rgba(0,0,0,.0) 40%, rgba(0,0,0,.42) 100%);
+    opacity:.85;
+    z-index: 0;
+  }
 
-.FooterMuted{
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.35;
-}
+  /* =========================================
+     CONTAINER: breiter, gleiches Padding oben/unten
+     ========================================= */
+  .FootBar__inner,
+  .FootBar__bottomInner{
+    position: relative;
+    z-index: 1;
 
-.FootCol--links{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px 26px;
-  align-content: start;
-  justify-items: start;
-}
+    /* "wide" – fühlt sich deutlich breiter an als 1140 */
+    width: min(1380px, calc(100% - 80px));
+    margin: 0 auto;
+  }
 
-.FooterInternalLink{
-  text-decoration: none;
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: .6px;
-  text-transform: uppercase;
-  opacity: .85;
-  position: relative;
-  transition: opacity .12s ease, transform .12s ease;
-}
+  /* top inner wrap */
+  .FootBar__inner{
+    padding: 44px 0 26px;
+    display: grid;
+    grid-template-columns: 1.2fr .9fr 1.1fr;
+    gap: 26px;
+  }
 
-.FooterInternalLink::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-  border-radius: 99px;
-  background: rgba(var(--accentRgb), .78);
-  box-shadow: 0 0 18px rgba(var(--accentRgb), .22);
-  transform: scaleX(0);
-  transform-origin: left;
-  opacity: 0;
-  transition: transform .14s ease, opacity .14s ease;
-}
+  /* Brand block */
+  .FootBrand{
+    display:flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
 
-.FooterInternalLink:hover{
-  opacity: 1;
-  transform: translateY(-1px);
-}
-.FooterInternalLink:hover::after{
-  transform: scaleX(.85);
-  opacity: .9;
-}
+  .FooterLogo{
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    border-radius: 16px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(245,246,255,.14);
+    padding: 10px;
+    box-shadow: 0 18px 55px rgba(0,0,0,.45);
+  }
 
-.FootBar__bottom{
-  max-width: var(--container);
-  margin: 10px auto 0;
-  padding: 10px 6px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  color: var(--muted);
-  font-size: 12.5px;
-  border-top: 1px solid rgba(238,240,255,.08);
-}
+  .FooterTitle{
+    font-weight: 1000;
+    letter-spacing: .2px;
+    font-size: 16px;
+    margin: 2px 0 6px;
+    color: rgba(245,246,255,.94);
+  }
 
-@media (max-width: 920px){
-  .FootBar__inner{ grid-template-columns: 1fr; }
-  .FootCol--links{ grid-template-columns: 1fr; gap: 10px; }
-  .FootBar__bottom{ flex-direction: column; align-items: flex-start; }
-}
+  .FooterTagline{
+    margin: 0;
+    color: rgba(245,246,255,.70);
+    font-size: 13.5px;
+    line-height: 1.5;
+    max-width: 48ch;
+  }
+
+  .FooterPills{
+    margin-top: 12px;
+    display:flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .FooterPill{
+    height: 26px;
+    display:inline-flex;
+    align-items:center;
+    padding: 0 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(245,246,255,.12);
+    background: rgba(0,0,0,.16);
+    color: rgba(245,246,255,.78);
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: .2px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .FootColTitle{
+    margin: 0 0 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 1000;
+    color: rgba(245,246,255,.72);
+  }
+
+  .FooterLinks{
+    display: grid;
+    gap: 8px;
+  }
+
+  .FooterInternalLink{
+    color: rgba(245,246,255,.86);
+    font-size: 13.5px;
+    font-weight: 850;
+    letter-spacing: .2px;
+    opacity: .92;
+    width: fit-content;
+    position: relative;
+    transition: opacity .15s ease, transform .15s ease;
+  }
+
+  .FooterInternalLink::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-4px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(124,58,237,.65), rgba(34,211,238,.35));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .18s ease;
+    opacity:.9;
+  }
+  .FooterInternalLink:hover{
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+  .FooterInternalLink:hover::after{ transform: scaleX(1); }
+
+  /* Contact card */
+  .FooterCard{
+    border-radius: 18px;
+    border: 1px solid rgba(245,246,255,.12);
+    background: rgba(255,255,255,.04);
+    padding: 14px;
+    box-shadow: 0 18px 55px rgba(0,0,0,.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .FooterCardLine{
+    margin: 0;
+    color: rgba(245,246,255,.78);
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .FooterCTA{
+    margin-top: 12px;
+    display:flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .FooterBtn{
+    height: 40px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding: 0 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(245,246,255,.14);
+    background: rgba(255,255,255,.06);
+    color: rgba(245,246,255,.92);
+    font-weight: 950;
+    letter-spacing: .2px;
+    transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    white-space: nowrap;
+  }
+  .FooterBtn:hover{
+    transform: translateY(-1px);
+    background: rgba(255,255,255,.10);
+    border-color: rgba(245,246,255,.22);
+  }
+  .FooterBtn--primary{
+    border-color: rgba(124,58,237,.42);
+    background: linear-gradient(90deg, rgba(124,58,237,.48), rgba(34,211,238,.22));
+  }
+
+  /* =========================================
+     BOTTOM BAR: gleiche Breite + mehr "edge-to-edge"
+     ========================================= */
+  .FootBar__bottom{
+    position: relative;
+    z-index: 1;
+
+    /* NICHT "kurz" wirken lassen */
+    background: rgba(0,0,0,.24);
+
+    /* Saubere, volle Trennlinie */
+    border-top: 1px solid rgba(245,246,255,.10);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .FootBar__bottomInner{
+    padding: 16px 0;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap: 12px;
+    color: rgba(245,246,255,.72);
+    font-size: 12.5px;
+  }
+
+  .FootTiny{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .Dot{
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(245,246,255,.30);
+  }
+
+  /* =========================================
+     Responsive
+     ========================================= */
+  @media (max-width: 980px){
+    .FootBar__inner{
+      grid-template-columns: 1fr;
+      gap: 18px;
+      padding: 34px 0 18px;
+    }
+    .FootBar__bottomInner{
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 14px 0 16px;
+    }
+  }
+
+  @media (max-width: 720px){
+    .FootBar__inner,
+    .FootBar__bottomInner{
+      width: calc(100% - 28px);
+    }
+  }
