@@ -185,13 +185,9 @@
 
     /* =========================
        MOBILE FIX: poster layout
-       - Image: 100% width, full visible (no crop)
-       - Content below image
        ========================= */
     @media (max-width: 720px){
-      .HeroAW{
-        min-height: unset;
-      }
+      .HeroAW{ min-height: unset; }
 
       .HeroAW__media{
         position: relative;
@@ -202,8 +198,8 @@
         position: relative;
         inset: auto;
         width: 100%;
-        height: auto;          /* key */
-        object-fit: contain;   /* key */
+        height: auto;
+        object-fit: contain;
         transform: none;
         filter: saturate(1.05) contrast(1.05) brightness(.95);
       }
@@ -215,9 +211,7 @@
         align-content: start;
       }
 
-      .HeroAW__text{
-        font-size: 15.2px;
-      }
+      .HeroAW__text{ font-size: 15.2px; }
     }
 
     /* =========================
@@ -365,12 +359,20 @@
       font-weight: 850;
       font-size: 12px;
       letter-spacing: .2px;
+      white-space: nowrap;
     }
     .AWEvent__desc{
       margin-top: 8px;
       color: rgba(245,246,255,.66);
       font-size: 13.5px;
       line-height: 1.45;
+      white-space: pre-line;
+    }
+
+    .AWEmpty{
+      padding: 18px 16px;
+      color: rgba(245,246,255,.70);
+      font-size: 14px;
     }
 
     @media (max-width: 720px){
@@ -414,67 +416,17 @@
       <div class="SectionHead">
         <div>
           <h2 class="SectionTitle">Hear us live</h2>
-          <p class="SectionSub">Next shows</p>
+          <p class="SectionSub">All calendar dates</p>
         </div>
       </div>
 
       <div class="AWEvents">
-<!--         <div class="AWEvents__note">
-          If a date is still missing venue or tickets: updates hit Instagram first — then this page.
-        </div> -->
+        <div class="AWEvents__note">
+          This list is synced with our Google Calendar.
+        </div>
 
-        <div class="AWEvents__list">
-          <div class="AWEvent">
-            <div class="AWEvent__date">
-              <div class="AWEvent__day">24</div>
-              <div class="AWEvent__mon">FEB</div>
-              <div class="AWEvent__year">2026</div>
-            </div>
-            <div class="AWEvent__info">
-              <div class="AWEvent__name">Alternative Ways — Live</div>
-              <div class="AWEvent__meta">
-                <span class="AWPill">19:00</span>
-                <span class="AWPill">Stuttgart</span>
-                <span class="AWPill">Free entry</span>
-              </div>
-              <div class="AWEvent__desc">More details soon.</div>
-            </div>
-          </div>
-
-          <div class="AWEvent">
-            <div class="AWEvent__date">
-              <div class="AWEvent__day">03</div>
-              <div class="AWEvent__mon">MAR</div>
-              <div class="AWEvent__year">2026</div>
-            </div>
-            <div class="AWEvent__info">
-              <div class="AWEvent__name">Alternative Ways — Club Show</div>
-              <div class="AWEvent__meta">
-                <span class="AWPill">20:30</span>
-                <span class="AWPill">Mannheim</span>
-                <span class="AWPill">tba</span>
-              </div>
-              <div class="AWEvent__desc">Venue/tickets will be added here.</div>
-            </div>
-          </div>
-
-          <div class="AWEvent">
-            <div class="AWEvent__date">
-              <div class="AWEvent__day">15</div>
-              <div class="AWEvent__mon">APR</div>
-              <div class="AWEvent__year">2026</div>
-            </div>
-            <div class="AWEvent__info">
-              <div class="AWEvent__name">Alternative Ways — Showcase</div>
-              <div class="AWEvent__meta">
-                <span class="AWPill">18:00</span>
-                <span class="AWPill">Online</span>
-                <span class="AWPill">Stream</span>
-              </div>
-              <div class="AWEvent__desc">Stream link coming soon.</div>
-            </div>
-          </div>
-
+        <div class="AWEvents__list" id="AWEventsList">
+          <div class="AWEmpty" id="AWEventsStatus">Loading events…</div>
         </div>
       </div>
     </section>
@@ -488,6 +440,126 @@
   <script>
     $("#HeadBar").load("FixedPages/HeadBar.html?cb=" + Date.now());
     $("#FootBar").load("FixedPages/FootBar.html?cb=" + Date.now());
+  </script>
+
+  <!-- Calendar loader (JSONP) -->
+  <script>
+    // 1) Paste your deployed Apps Script Web App URL here (see steps below)
+    const AW_CAL_API = "https://script.google.com/macros/s/AKfycbxiGR0al4G5foFDZQQrmNj6WCo_VG-mR8rDSD2xSSBPMW4TIdG6ad9_fnDVKDUGUGtE/exec";
+
+    const AWCal = (() => {
+      const elList = () => document.getElementById("AWEventsList");
+      const elStatus = () => document.getElementById("AWEventsStatus");
+
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+      }[c]));
+
+      const pad2 = (n) => String(n).padStart(2,"0");
+      const mon = (d) => ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"][d.getMonth()];
+
+      function fmtTimeRange(ev){
+        if (ev.allDay) return "All day";
+        const s = new Date(ev.start);
+        const e = new Date(ev.end);
+        return `${pad2(s.getHours())}:${pad2(s.getMinutes())}` + (e && (e - s) > 0 ? `–${pad2(e.getHours())}:${pad2(e.getMinutes())}` : "");
+      }
+
+      function pill(text){
+        return `<span class="AWPill">${esc(text)}</span>`;
+      }
+
+      function render(events){
+        const list = elList();
+        list.innerHTML = "";
+
+        if (!events || !events.length){
+          list.innerHTML = `<div class="AWEmpty">No events found.</div>`;
+          return;
+        }
+
+        // Sort ascending by start
+        events.sort((a,b) => new Date(a.start) - new Date(b.start));
+
+        for (const ev of events){
+          const s = new Date(ev.start);
+
+          const day = pad2(s.getDate());
+          const month = mon(s);
+          const year = s.getFullYear();
+
+          const pills = [
+            pill(fmtTimeRange(ev)),
+            ev.city ? pill(ev.city) : "",
+            ev.location ? pill(ev.location) : "",
+          ].filter(Boolean).join("");
+
+          const descBits = [];
+          if (ev.description) descBits.push(ev.description);
+          if (ev.url) descBits.push(`More: ${ev.url}`);
+          const desc = descBits.length ? esc(descBits.join("\n")) : "—";
+
+          list.insertAdjacentHTML("beforeend", `
+            <div class="AWEvent">
+              <div class="AWEvent__date">
+                <div class="AWEvent__day">${esc(day)}</div>
+                <div class="AWEvent__mon">${esc(month)}</div>
+                <div class="AWEvent__year">${esc(year)}</div>
+              </div>
+              <div class="AWEvent__info">
+                <div class="AWEvent__name">${esc(ev.title || "Event")}</div>
+                <div class="AWEvent__meta">${pills}</div>
+                <div class="AWEvent__desc">${desc}</div>
+              </div>
+            </div>
+          `);
+        }
+      }
+
+      function jsonp(url){
+        return new Promise((resolve, reject) => {
+          const cbName = "AWCal_cb_" + Math.random().toString(36).slice(2);
+          const script = document.createElement("script");
+          const timeout = setTimeout(() => {
+            cleanup();
+            reject(new Error("Calendar request timed out"));
+          }, 15000);
+
+          function cleanup(){
+            clearTimeout(timeout);
+            script.remove();
+            try { delete window[cbName]; } catch(e){ window[cbName] = undefined; }
+          }
+
+          window[cbName] = (data) => { cleanup(); resolve(data); };
+          script.onerror = () => { cleanup(); reject(new Error("Calendar request failed")); };
+
+          const sep = url.includes("?") ? "&" : "?";
+          script.src = `${url}${sep}callback=${encodeURIComponent(cbName)}&mode=all`;
+          document.body.appendChild(script);
+        });
+      }
+
+      async function load(){
+        const status = elStatus();
+        if (status) status.textContent = "Loading events…";
+
+        try{
+          const data = await jsonp(AW_CAL_API);
+          if (!data || data.ok !== true) throw new Error(data?.error || "Unknown calendar error");
+          render(data.events || []);
+        }catch(err){
+          console.error(err);
+          const list = elList();
+          list.innerHTML = `<div class="AWEmpty">Could not load events. (${esc(err.message)})</div>`;
+        }
+      }
+
+      return { load };
+    })();
+
+    // fire
+    AWCal.load();
   </script>
 </body>
 </html>
