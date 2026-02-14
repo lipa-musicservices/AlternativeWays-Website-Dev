@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alternative Ways | Impressum</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="Resources/AW-Icon.png" />
+  <meta name="theme-color" content="#070818" />
+  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
+
+  <style>
+    /* =========================================
+       IMPRESSUM — page-only styles (match About vibe)
+       ========================================= */
+
+    :root{
+      --bg0:#070818;
+      --bg1:#0b0f2a;
+      --text: rgba(238,240,255,.94);
+      --muted: rgba(238,240,255,.72);
+      --border: rgba(238,240,255,.10);
+      --card: rgba(238,240,255,.04);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --container: 1140px;
+      --topbarH: 78px;
+      --accent:#7C3AED;
+      --accent2:#22D3EE;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(34,211,238,.18), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+    }
+    a{ color:inherit; text-decoration:none; }
+    a.u{ text-decoration: underline; text-underline-offset: 3px; }
+
+    /* Page layout */
+    .Page{
+      padding-top: var(--topbarH);
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    .Wrap{
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* ✅ FOOTBAR FIX (ohne FootBar.html zu ändern) */
+    #FootBar{ width:100%; }
+    #FootBar .FootBar{
+      width: 100vw !important;
+      margin-left: calc(50% - 50vw) !important;
+      margin-right: 0 !important;
+    }
+
+    /* =========================================
+       HERO FULL WIDTH
+       ========================================= */
+    .HeroFull{
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      position: relative;
+      min-height: clamp(360px, 56vh, 560px);
+      border-bottom: 1px solid rgba(238,240,255,.10);
+      overflow: hidden;
+      background: #000;
+
+      /* ✅ pull under headbar */
+      margin-top: calc(var(--topbarH) * -1);
+      padding-top: var(--topbarH);
+    }
+
+    .HeroFull__bg{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(124,58,237,.30), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(34,211,238,.18), transparent 55%),
+        linear-gradient(180deg, rgba(7,8,24,.85), rgba(7,8,24,.92));
+      transform: scale(1.02);
+      filter: saturate(1.05) contrast(1.05);
+    }
+
+    .HeroFull__shade{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(900px 520px at 20% 22%, rgba(124,58,237,.24), transparent 60%),
+        radial-gradient(900px 520px at 80% 20%, rgba(34,211,238,.14), transparent 55%),
+        linear-gradient(180deg, rgba(7,8,24,.18), rgba(7,8,24,.72) 55%, rgba(7,8,24,.92));
+      pointer-events:none;
+    }
+
+    .HeroFull__inner{
+      position: relative;
+      z-index: 2;
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+      min-height: calc(clamp(360px, 56vh, 560px) - 0px);
+      padding: 24px 0 30px;
+      padding-bottom: calc(30px + env(safe-area-inset-bottom, 0px));
+      display: grid;
+      align-content: end;
+      gap: 12px;
+    }
+
+    .Kicker{
+      width: fit-content;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(238,240,255,.14);
+      background: rgba(238,240,255,.06);
+      color: rgba(238,240,255,.86);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .9px;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .Kicker__dot{
+      width: 7px; height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 6px rgba(124,58,237,.14);
+    }
+
+    .HeroTitle{
+      margin: 0;
+      font-weight: 1000;
+      letter-spacing: -0.02em;
+      font-size: clamp(28px, 4.0vw, 50px);
+      line-height: 1.05;
+      text-shadow: 0 22px 70px rgba(0,0,0,.65);
+      max-width: 26ch;
+    }
+
+    .HeroText{
+      margin: 0;
+      max-width: 78ch;
+      color: rgba(238,240,255,.84);
+      font-size: 15.8px;
+      line-height: 1.65;
+      text-shadow: 0 22px 70px rgba(0,0,0,.65);
+    }
+
+    .TagRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .Tag{
+      height: 26px;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(238,240,255,.12);
+      background: rgba(0,0,0,.18);
+      color: rgba(238,240,255,.80);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .2px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* =========================================
+       Content sections
+       ========================================= */
+    .Section{
+      padding: 22px 0 22px;
+    }
+
+    .Grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 16px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .Grid{ grid-template-columns: 1fr; }
+    }
+
+    .Card{
+      border-radius: 18px;
+      border: 1px solid rgba(238,240,255,.10);
+      background: rgba(238,240,255,.03);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.14) inset;
+      overflow:hidden;
+    }
+    .Card__inner{ padding: 16px; }
+
+    .Card h2{
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 1000;
+      letter-spacing: .2px;
+    }
+
+    .Card p, .Card li{
+      color: rgba(238,240,255,.74);
+      line-height: 1.65;
+      font-size: 14.8px;
+    }
+    .Card p{ margin: 0 0 12px; }
+    .Card p:last-child{ margin-bottom: 0; }
+
+    .Card ul{
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .Divider{
+      height: 1px;
+      background: rgba(238,240,255,.08);
+      margin: 14px 0;
+    }
+
+    .MiniList{
+      display:grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .MiniItem{
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(238,240,255,.10);
+      background: rgba(238,240,255,.03);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.14) inset;
+    }
+    .MiniItem b{
+      display:block;
+      font-weight: 1000;
+      margin-bottom: 6px;
+      letter-spacing: .2px;
+      color: rgba(238,240,255,.92);
+    }
+    .MiniItem span{
+      color: rgba(238,240,255,.72);
+      font-size: 13.8px;
+      line-height: 1.45;
+      display:block;
+    }
+
+    .Note{
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px dashed rgba(238,240,255,.16);
+      background: rgba(0,0,0,.14);
+      color: rgba(238,240,255,.72);
+      font-size: 13.6px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 720px){
+      .HeroFull{ min-height: 46vh; }
+      .HeroText{ font-size: 15.2px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Headbar partial -->
+  <div id="HeadBar"></div>
+
+  <main class="Page">
+
+    <!-- HERO FULL WIDTH -->
+    <section class="HeroFull" aria-label="Impressum Hero">
+      <div class="HeroFull__bg" aria-hidden="true"></div>
+      <div class="HeroFull__shade" aria-hidden="true"></div>
+
+      <div class="HeroFull__inner">
+        <div class="Kicker"><span class="Kicker__dot" aria-hidden="true"></span>Alternative Ways • Impressum</div>
+
+        <h1 class="HeroTitle">Impressum</h1>
+
+        <p class="HeroText">
+          Angaben gemäß § 5 TMG / gesetzliche Pflichtinfos. Kurz gesagt: wer hier verantwortlich ist und wie man uns erreicht.
+        </p>
+
+        <div class="TagRow" aria-label="Tags">
+          <span class="Tag"><b>Kontakt</b></span>
+          <span class="Tag"><b>Verantwortlich</b></span>
+          <span class="Tag"><b>Rechtliches</b></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="Wrap">
+      <section class="Section" aria-label="Impressum Content">
+        <div class="Grid">
+
+          <!-- LEFT: Main content -->
+          <article class="Card">
+            <div class="Card__inner">
+              <h2>Anbieter / Verantwortliche Stelle</h2>
+              <p>
+                <strong>Alternative Ways</strong><br/>
+                <!-- TODO: Name/Vertretungsberechtigt -->
+                Vertreten durch: <strong>Pascal Schopp</strong><br/>
+                <!-- TODO: Adresse -->
+                67346 Speyer<br/>
+                Deutschland
+              </p>
+
+              <div class="Divider"></div>
+
+              <h2>Kontakt</h2>
+              <ul>
+                <li>E-Mail: <a class="u" href="mailto:alternativewaysofficial@gmail.com">alternativewaysofficial@gmail.com</a></li>
+              </ul>
+
+              <div class="Divider"></div>
+
+              <h2>Inhaltlich verantwortlich</h2>
+              <p>
+                Pascal Schopp (Anschrift wie oben)
+              </p>
+
+              <div class="Divider"></div>
+
+              <h2>Haftung für Inhalte</h2>
+              <p>
+                Als Diensteanbieter sind wir gemäß den allgemeinen Gesetzen für eigene Inhalte auf diesen Seiten verantwortlich.
+                Wir übernehmen jedoch keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte.
+              </p>
+
+              <h2>Haftung für Links</h2>
+              <p>
+                Diese Website kann Links zu externen Websites Dritter enthalten, auf deren Inhalte wir keinen Einfluss haben.
+                Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.
+              </p>
+
+              <h2>Urheberrecht</h2>
+              <p>
+                Inhalte und Werke auf dieser Website unterliegen dem deutschen Urheberrecht. Downloads und Kopien sind nur für
+                den privaten, nicht kommerziellen Gebrauch gestattet, soweit nicht anders gekennzeichnet.
+              </p>
+
+              <div class="Note">
+                Tipp: Wenn ihr wirklich ganz sauber sein wollt, setzt im Footer/HeadBar einen Link zu
+                <strong>Datenschutz</strong> dazu (separate Datei), plus Cookie-Banner (habt ihr ja schon als FixedPage geplant).
+              </div>
+            </div>
+          </article>
+
+          <!-- RIGHT: Quick boxes -->
+          <aside class="Card">
+            <div class="Card__inner">
+              <h2>Quick facts</h2>
+              <div class="MiniList" aria-label="Quick facts">
+                <div class="MiniItem">
+                  <b>Verantwortlich</b>
+                  <span>Pascal Schopp</span>
+                </div>
+                <div class="MiniItem">
+                  <b>Ort</b>
+                  <span>67346 Speyer</span>
+                </div>
+                <div class="MiniItem">
+                  <b>Kontakt</b>
+                  <span><a class="u" href="mailto:alternativewaysofficial@gmail.com">alternativewaysofficial@gmail.com</a></span>
+                </div>
+              </div>
+
+              <div class="Divider"></div>
+
+              <h2>Social / External</h2>
+              <p style="margin-bottom:10px;">
+                Links zu Instagram/Facebook/YouTube etc. sind externe Links.
+              </p>
+              <ul>
+                <li><a class="u" href="###INSTAGRAM_URL###" target="_blank" rel="noopener">Instagram</a></li>
+                <li><a class="u" href="###YOUTUBE_URL###" target="_blank" rel="noopener">YouTube</a></li>
+                <li><a class="u" href="###SPOTIFY_URL###" target="_blank" rel="noopener">Spotify</a></li>
+              </ul>
+
+              <div class="Note">
+                Wenn ihr keine Telefonnummer öffentlich wollt: raus damit. Eine Mailadresse reicht in vielen Fällen praktisch aus —
+                rechtlich ist’s je nach Kontext manchmal sinnvoll, aber niemand zwingt euch zu “Callcenter-vibes”.
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Footbar partial -->
+  <div id="FootBar"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $("#HeadBar").load("FixedPages/HeadBar.html");
+    $("#FootBar").load("FixedPages/FootBar.html");
+  </script>
+</body>
+</html>

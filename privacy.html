@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alternative Ways | Datenschutz</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="Resources/AW-Icon.png" />
+  <meta name="theme-color" content="#070818" />
+  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
+
+  <style>
+    /* =========================================
+       PRIVACY — page-only styles (match About vibe)
+       ========================================= */
+
+    :root{
+      --bg0:#070818;
+      --bg1:#0b0f2a;
+      --text: rgba(238,240,255,.94);
+      --muted: rgba(238,240,255,.72);
+      --border: rgba(238,240,255,.10);
+      --card: rgba(238,240,255,.04);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --container: 1140px;
+      --topbarH: 78px;
+      --accent:#7C3AED;
+      --accent2:#22D3EE;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(34,211,238,.18), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+    }
+    a{ color:inherit; text-decoration:none; }
+    a.u{ text-decoration: underline; text-underline-offset: 3px; }
+
+    /* Page layout */
+    .Page{
+      padding-top: var(--topbarH);
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    .Wrap{
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* ✅ FOOTBAR FIX (ohne FootBar.html zu ändern) */
+    #FootBar{ width:100%; }
+    #FootBar .FootBar{
+      width: 100vw !important;
+      margin-left: calc(50% - 50vw) !important;
+      margin-right: 0 !important;
+    }
+
+    /* =========================================
+       HERO FULL WIDTH
+       ========================================= */
+    .HeroFull{
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      position: relative;
+      min-height: clamp(360px, 56vh, 560px);
+      border-bottom: 1px solid rgba(238,240,255,.10);
+      overflow: hidden;
+      background: #000;
+
+      /* ✅ pull under headbar */
+      margin-top: calc(var(--topbarH) * -1);
+      padding-top: var(--topbarH);
+    }
+
+    .HeroFull__bg{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(124,58,237,.30), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(34,211,238,.18), transparent 55%),
+        linear-gradient(180deg, rgba(7,8,24,.85), rgba(7,8,24,.92));
+      transform: scale(1.02);
+      filter: saturate(1.05) contrast(1.05);
+    }
+
+    .HeroFull__shade{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(900px 520px at 20% 22%, rgba(124,58,237,.24), transparent 60%),
+        radial-gradient(900px 520px at 80% 20%, rgba(34,211,238,.14), transparent 55%),
+        linear-gradient(180deg, rgba(7,8,24,.18), rgba(7,8,24,.72) 55%, rgba(7,8,24,.92));
+      pointer-events:none;
+    }
+
+    .HeroFull__inner{
+      position: relative;
+      z-index: 2;
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+      min-height: calc(clamp(360px, 56vh, 560px) - 0px);
+      padding: 24px 0 30px;
+      padding-bottom: calc(30px + env(safe-area-inset-bottom, 0px));
+      display: grid;
+      align-content: end;
+      gap: 12px;
+    }
+
+    .Kicker{
+      width: fit-content;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(238,240,255,.14);
+      background: rgba(238,240,255,.06);
+      color: rgba(238,240,255,.86);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .9px;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .Kicker__dot{
+      width: 7px; height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 6px rgba(124,58,237,.14);
+    }
+
+    .HeroTitle{
+      margin: 0;
+      font-weight: 1000;
+      letter-spacing: -0.02em;
+      font-size: clamp(28px, 4.0vw, 50px);
+      line-height: 1.05;
+      text-shadow: 0 22px 70px rgba(0,0,0,.65);
+      max-width: 30ch;
+    }
+
+    .HeroText{
+      margin: 0;
+      max-width: 90ch;
+      color: rgba(238,240,255,.84);
+      font-size: 15.8px;
+      line-height: 1.65;
+      text-shadow: 0 22px 70px rgba(0,0,0,.65);
+    }
+
+    .TagRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .Tag{
+      height: 26px;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(238,240,255,.12);
+      background: rgba(0,0,0,.18);
+      color: rgba(238,240,255,.80);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .2px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* =========================================
+       Content sections
+       ========================================= */
+    .Section{ padding: 22px 0 22px; }
+
+    .Grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 16px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .Grid{ grid-template-columns: 1fr; }
+    }
+
+    .Card{
+      border-radius: 18px;
+      border: 1px solid rgba(238,240,255,.10);
+      background: rgba(238,240,255,.03);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.14) inset;
+      overflow:hidden;
+    }
+    .Card__inner{ padding: 16px; }
+
+    .Card h2{
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 1000;
+      letter-spacing: .2px;
+    }
+    .Card h3{
+      margin: 14px 0 8px;
+      font-size: 14.6px;
+      font-weight: 1000;
+      letter-spacing: .2px;
+      color: rgba(238,240,255,.92);
+    }
+
+    .Card p, .Card li{
+      color: rgba(238,240,255,.74);
+      line-height: 1.65;
+      font-size: 14.8px;
+    }
+    .Card p{ margin: 0 0 12px; }
+    .Card p:last-child{ margin-bottom: 0; }
+
+    .Card ul{
+      margin: 0 0 12px;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .Divider{
+      height: 1px;
+      background: rgba(238,240,255,.08);
+      margin: 14px 0;
+    }
+
+    .MiniList{
+      display:grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .MiniItem{
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(238,240,255,.10);
+      background: rgba(238,240,255,.03);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.14) inset;
+    }
+    .MiniItem b{
+      display:block;
+      font-weight: 1000;
+      margin-bottom: 6px;
+      letter-spacing: .2px;
+      color: rgba(238,240,255,.92);
+    }
+    .MiniItem span{
+      color: rgba(238,240,255,.72);
+      font-size: 13.8px;
+      line-height: 1.45;
+      display:block;
+    }
+
+    code.k{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12.8px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(238,240,255,.12);
+      padding: 2px 6px;
+      border-radius: 8px;
+      color: rgba(238,240,255,.90);
+    }
+
+    @media (max-width: 720px){
+      .HeroFull{ min-height: 46vh; }
+      .HeroText{ font-size: 15.2px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Headbar partial -->
+  <div id="HeadBar"></div>
+
+  <main class="Page">
+
+    <!-- HERO FULL WIDTH -->
+    <section class="HeroFull" aria-label="Datenschutz Hero">
+      <div class="HeroFull__bg" aria-hidden="true"></div>
+      <div class="HeroFull__shade" aria-hidden="true"></div>
+
+      <div class="HeroFull__inner">
+        <div class="Kicker"><span class="Kicker__dot" aria-hidden="true"></span>Alternative Ways • Datenschutz</div>
+
+        <h1 class="HeroTitle">Datenschutzerklärung</h1>
+
+        <p class="HeroText">
+          Kurzfassung: Wir speichern so wenig wie möglich. Diese Website ist statisch und nutzt kein Tracking.
+          Trotzdem gibt es technische Vorgänge (Hosting, externe Ressourcen, Links), die transparent aufgeführt werden müssen.
+        </p>
+
+        <div class="TagRow" aria-label="Tags">
+          <span class="Tag"><b>DSGVO</b></span>
+          <span class="Tag"><b>Transparenz</b></span>
+          <span class="Tag"><b>Kein Tracking</b></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="Wrap">
+      <section class="Section" aria-label="Datenschutz Content">
+        <div class="Grid">
+
+          <!-- LEFT: Main -->
+          <article class="Card">
+            <div class="Card__inner">
+
+              <h2>1. Verantwortlicher</h2>
+              <p>
+                Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br/>
+                <strong>Pascal Schopp</strong> (Alternative Ways)<br/>
+                67346 Speyer, Deutschland<br/>
+                E-Mail: <a class="u" href="mailto:alternativewaysofficial@gmail.com">alternativewaysofficial@gmail.com</a>
+              </p>
+
+              <div class="Divider"></div>
+
+              <h2>2. Allgemeines</h2>
+              <p>
+                Wir verarbeiten personenbezogene Daten nur, soweit dies erforderlich ist und im Rahmen der gesetzlichen Vorgaben,
+                insbesondere der Datenschutz-Grundverordnung (DSGVO). Personenbezogene Daten sind alle Daten, mit denen du persönlich
+                identifiziert werden kannst.
+              </p>
+
+              <h3>Kein Tracking / keine Profile</h3>
+              <p>
+                Wir verwenden keine Tracking-Tools (z. B. Google Analytics), keine Werbenetzwerke und keine personalisierte Werbung.
+              </p>
+
+              <div class="Divider"></div>
+
+              <h2>3. Hosting über GitHub Pages</h2>
+              <p>
+                Diese Website wird über <strong>GitHub Pages</strong> bereitgestellt (Anbieter: GitHub, Inc.). Beim Aufruf der Website
+                werden durch den Hosting-Anbieter technisch notwendige Zugriffsdaten verarbeitet, um die Website auszuliefern und die
+                Sicherheit zu gewährleisten. Dazu können insbesondere gehören: IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene
+                Seite/Datei, Referrer-URL, Browsertyp/Version, Betriebssystem sowie ähnliche technische Informationen.
+              </p>
+              <p>
+                Die Verarbeitung erfolgt auf Grundlage von <strong>Art. 6 Abs. 1 lit. f DSGVO</strong> (berechtigtes Interesse) an der
+                sicheren und zuverlässigen Bereitstellung dieser Website.
+              </p>
+
+              <div class="Divider"></div>
+
+              <h2>4. Externe Ressourcen (CDN / Bibliotheken)</h2>
+              <p>
+                Auf einzelnen Seiten kann eine JavaScript-Bibliothek (z. B. jQuery) über ein externes Content Delivery Network (CDN)
+                eingebunden werden, z. B. über <code class="k">cdnjs.cloudflare.com</code>.
+              </p>
+              <p>
+                Beim Laden solcher Ressourcen wird technisch bedingt eine Verbindung zum jeweiligen Anbieter hergestellt. Dabei kann
+                u. a. deine IP-Adresse an den CDN-Anbieter übertragen werden. Die Einbindung erfolgt zur stabilen und performanten
+                Auslieferung der Website.
+              </p>
+
+              <div class="Divider"></div>
+
+              <h2>5. Kontaktaufnahme</h2>
+              <p>
+                Wenn du uns per E-Mail kontaktierst, verarbeiten wir die von dir übermittelten Daten (z. B. E-Mail-Adresse, Inhalt der
+                Nachricht), um deine Anfrage zu bearbeiten. Rechtsgrundlage ist <strong>Art. 6 Abs. 1 lit. b DSGVO</strong>
+                (vorvertragliche/vertragliche Kommunikation) bzw. <strong>Art. 6 Abs. 1 lit. f DSGVO</strong> (berechtigtes Interesse an
+                der Beantwortung von Anfragen).
+              </p>
+
+              <div class="Divider"></div>
+
+              <h2>6. Externe Links (Social Media, YouTube, Spotify etc.)</h2>
+              <p>
+                Unsere Website enthält Links zu externen Plattformen (z. B. Instagram, Facebook, YouTube, Spotify). Wenn du einen solchen
+                Link anklickst, verlässt du unsere Website. Ab diesem Zeitpunkt gelten die Datenschutzbestimmungen des jeweiligen Anbieters.
+              </p>
+
+              <div class="Divider"></div>
+
+              <h2>7. Cookies</h2>
+              <p>
+                Wir setzen keine Cookies zu Tracking- oder Werbezwecken ein. Es kann jedoch sein, dass Hosting-Anbieter oder externe
+                Dienste (z. B. CDNs) technisch erforderliche Cookies oder ähnliche Technologien einsetzen, um ihre Dienste bereitzustellen.
+              </p>
+
+              <div class="Divider"></div>
+
+              <h2>8. Deine Rechte</h2>
+              <p>
+                Du hast im Rahmen der DSGVO insbesondere folgende Rechte:
+              </p>
+              <ul>
+                <li>Auskunft über deine gespeicherten Daten</li>
+                <li>Berichtigung unrichtiger Daten</li>
+                <li>Löschung (sofern keine Aufbewahrungspflichten entgegenstehen)</li>
+                <li>Einschränkung der Verarbeitung</li>
+                <li>Widerspruch gegen Verarbeitung (insbesondere bei berechtigtem Interesse)</li>
+                <li>Datenübertragbarkeit</li>
+                <li>Beschwerde bei einer Datenschutzaufsichtsbehörde</li>
+              </ul>
+              <p>
+                Wenn du eines dieser Rechte ausüben möchtest, schreib uns:
+                <a class="u" href="mailto:alternativewaysofficial@gmail.com">alternativewaysofficial@gmail.com</a>
+              </p>
+
+              <div class="Divider"></div>
+
+              <h2>9. Änderungen dieser Datenschutzerklärung</h2>
+              <p>
+                Wir behalten uns vor, diese Datenschutzerklärung anzupassen, wenn sich die Website oder rechtliche Anforderungen ändern.
+                Die jeweils aktuelle Version ist auf dieser Seite verfügbar.
+              </p>
+
+            </div>
+          </article>
+
+          <!-- RIGHT: Quick boxes -->
+          <aside class="Card">
+            <div class="Card__inner">
+              <h2>Auf einen Blick</h2>
+
+              <div class="MiniList" aria-label="Quick privacy facts">
+                <div class="MiniItem">
+                  <b>Tracking</b>
+                  <span>Nein</span>
+                </div>
+                <div class="MiniItem">
+                  <b>Hosting</b>
+                  <span>GitHub Pages (GitHub, Inc.)</span>
+                </div>
+                <div class="MiniItem">
+                  <b>Kontakt</b>
+                  <span><a class="u" href="mailto:alternativewaysofficial@gmail.com">alternativewaysofficial@gmail.com</a></span>
+                </div>
+                <div class="MiniItem">
+                  <b>Externe Inhalte</b>
+                  <span>Externe Links möglich; ggf. CDN-Einbindung</span>
+                </div>
+              </div>
+
+            </div>
+          </aside>
+
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Footbar partial -->
+  <div id="FootBar"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $("#HeadBar").load("FixedPages/HeadBar.html");
+    $("#FootBar").load("FixedPages/FootBar.html");
+  </script>
+</body>
+</html>
