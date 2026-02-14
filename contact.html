@@ -11,13 +11,8 @@
   <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
 
   <style>
-    /* =========================================
-       CONTACT — page-only styles
-       (HeadBar + FootBar bleiben extern!)
-       ========================================= */
     :root{
-      --bg0:#070818;
-      --bg1:#0b0f2a;
+      --bg0:#070818; --bg1:#0b0f2a;
       --text: rgba(238,240,255,.94);
       --muted: rgba(238,240,255,.72);
       --border: rgba(238,240,255,.10);
@@ -43,17 +38,16 @@
     }
     a{ color:inherit; text-decoration:none; }
 
-    .Page{
-      padding-top: var(--topbarH);
-      min-height: 100vh;
-      width:100%;
-    }
-    .Wrap{
-      width: min(var(--container), calc(100% - 40px));
-      margin: 0 auto;
+    .Page{ padding-top: var(--topbarH); min-height: 100vh; width:100%; }
+    .Wrap{ width: min(var(--container), calc(100% - 40px)); margin: 0 auto; }
+
+    #FootBar{ width:100%; }
+    #FootBar .FootBar{
+      width: 100vw !important;
+      margin-left: calc(50% - 50vw) !important;
+      margin-right: 0 !important;
     }
 
-    /* HERO */
     .Hero{
       position: relative;
       margin-top: 18px;
@@ -66,11 +60,7 @@
         radial-gradient(900px 520px at 80% 30%, rgba(34,211,238,.18), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.25));
     }
-    .Hero__inner{
-      padding: 22px 22px 18px;
-      display:grid;
-      gap: 12px;
-    }
+    .Hero__inner{ padding: 22px 22px 18px; display:grid; gap: 12px; }
 
     .Kicker{
       width: fit-content;
@@ -112,13 +102,7 @@
       line-height: 1.55;
     }
 
-    .BtnRow{
-      margin-top: 6px;
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      align-items:center;
-    }
+    .BtnRow{ margin-top: 6px; display:flex; flex-wrap:wrap; gap: 10px; align-items:center; }
     .Btn{
       height: 40px;
       display:inline-flex;
@@ -139,22 +123,10 @@
       background: rgba(255,255,255,.10);
       border-color: rgba(238,240,255,.22);
     }
-    .Btn--primary{
-      border-color: rgba(124,58,237,.40);
-      background: linear-gradient(90deg, rgba(124,58,237,.45), rgba(34,211,238,.20));
-    }
 
-    /* LAYOUT */
     .Section{ padding: 18px 0 26px; }
-    .Grid{
-      display:grid;
-      grid-template-columns: 1.3fr .7fr;
-      gap: 12px;
-      align-items:start;
-    }
-    @media (max-width: 980px){
-      .Grid{ grid-template-columns: 1fr; }
-    }
+    .Grid{ display:grid; grid-template-columns: 1.3fr .7fr; gap: 12px; align-items:start; }
+    @media (max-width: 980px){ .Grid{ grid-template-columns: 1fr; } }
 
     .Card{
       border-radius: 18px;
@@ -164,44 +136,15 @@
       overflow:hidden;
     }
     .Card__inner{ padding: 16px; }
+    .Card h2{ margin: 0 0 10px; font-size: 16px; font-weight: 1000; letter-spacing: .2px; }
+    .Card p{ margin: 0 0 12px; color: rgba(238,240,255,.74); line-height: 1.65; font-size: 14.6px; }
+    .Divider{ height: 1px; background: rgba(238,240,255,.08); margin: 14px 0; }
 
-    .Card h2{
-      margin: 0 0 10px;
-      font-size: 16px;
-      font-weight: 1000;
-      letter-spacing: .2px;
-    }
-    .Card p{
-      margin: 0 0 12px;
-      color: rgba(238,240,255,.74);
-      line-height: 1.65;
-      font-size: 14.6px;
-    }
-    .Divider{
-      height: 1px;
-      background: rgba(238,240,255,.08);
-      margin: 14px 0;
-    }
+    .Form{ display:grid; gap: 12px; margin-top: 10px; }
+    .Row2{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 560px){ .Row2{ grid-template-columns: 1fr; } }
 
-    /* FORM */
-    .Form{
-      display:grid;
-      gap: 12px;
-      margin-top: 10px;
-    }
-    .Row2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    @media (max-width: 560px){
-      .Row2{ grid-template-columns: 1fr; }
-    }
-
-    .Field{
-      display:grid;
-      gap: 6px;
-    }
+    .Field{ display:grid; gap: 6px; }
     .Label{
       font-weight: 950;
       letter-spacing: .2px;
@@ -220,26 +163,17 @@
       font-weight: 800;
       letter-spacing: .2px;
       font-size: 14px;
-      transition: border-color .15s ease, background .15s ease, transform .15s ease;
+      transition: border-color .15s ease, background .15s ease;
     }
     .Textarea{ min-height: 150px; resize: vertical; }
     .Input:focus, .Textarea:focus, .Select:focus{
       border-color: rgba(34,211,238,.35);
       background: rgba(255,255,255,.075);
     }
-    .Help{
-      color: rgba(238,240,255,.62);
-      font-size: 13px;
-      line-height: 1.35;
-    }
 
-    .Actions{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items:center;
-      margin-top: 2px;
-    }
+    .Help{ color: rgba(238,240,255,.62); font-size: 13px; line-height: 1.35; }
+
+    .Actions{ display:flex; gap: 10px; flex-wrap: wrap; align-items:center; margin-top: 2px; }
     .Submit{
       height: 42px;
       padding: 0 16px;
@@ -250,7 +184,7 @@
       font-weight: 1000;
       letter-spacing: .2px;
       cursor:pointer;
-      transition: transform .18s ease, filter .18s ease, border-color .18s ease;
+      transition: transform .18s ease, border-color .18s ease;
     }
     .Submit:hover{ transform: translateY(-1px); border-color: rgba(34,211,238,.40); }
     .Submit:disabled{ opacity:.6; cursor:not-allowed; transform:none; }
@@ -267,11 +201,7 @@
       cursor:pointer;
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
     }
-    .Ghost:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.10);
-      border-color: rgba(238,240,255,.22);
-    }
+    .Ghost:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(238,240,255,.22); }
 
     .Status{
       margin-top: 12px;
@@ -286,12 +216,7 @@
     }
     .Status.is-on{ display:block; }
 
-    /* Side mini list */
-    .MiniList{
-      display:grid;
-      gap: 10px;
-      margin-top: 10px;
-    }
+    .MiniList{ display:grid; gap: 10px; margin-top: 10px; }
     .MiniItem{
       padding: 12px;
       border-radius: 16px;
@@ -299,18 +224,8 @@
       background: rgba(238,240,255,.03);
       box-shadow: 0 0 0 1px rgba(0,0,0,.14) inset;
     }
-    .MiniItem b{
-      display:block;
-      font-weight: 1000;
-      margin-bottom: 6px;
-      letter-spacing: .2px;
-    }
-    .MiniItem span{
-      color: rgba(238,240,255,.72);
-      font-size: 13.8px;
-      line-height: 1.45;
-      display:block;
-    }
+    .MiniItem b{ display:block; font-weight: 1000; margin-bottom: 6px; letter-spacing: .2px; }
+    .MiniItem span{ color: rgba(238,240,255,.72); font-size: 13.8px; line-height: 1.45; display:block; }
   </style>
 </head>
 
@@ -325,11 +240,12 @@
           <div class="Kicker"><span class="Kicker__dot" aria-hidden="true"></span>Alternative Ways • Contact</div>
           <h1 class="Hero__title">Send us a message</h1>
           <p class="Hero__lead">
-            Booking, Support-Slots, Collabs, Press. Maybe what you're searching is here:
+            Booking, Support-Slots, Collabs, Press. Schreib uns — wir antworten schnell und unkompliziert.
           </p>
 
           <div class="BtnRow" aria-label="Quick actions">
             <a class="Btn" href="downloads.html">Downloads</a>
+            <a class="Btn" href="media.html">Media</a>
           </div>
         </div>
       </section>
@@ -341,15 +257,19 @@
           <article class="Card">
             <div class="Card__inner">
               <h2>Contact-Form</h2>
-              <p>
-                <!-- Je mehr Kontext du gibst (Datum/Ort, Slot-Länge, Technik), desto schneller können wir sauber antworten. -->
-              </p>
 
               <form id="contactForm" class="Form" autocomplete="on" novalidate>
-                <!-- Honeypot (unsichtbar, Bots fangen) -->
-                <div style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">
-                  <label>Leave this field empty</label>
-                  <input type="text" id="company" name="company" tabindex="-1" autocomplete="off" />
+                <!-- Honeypot (Bots fangen) — Autofill-sicher -->
+                <div aria-hidden="true" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">
+                  <label for="website">Website</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    tabindex="-1"
+                    autocomplete="new-password"
+                    inputmode="url"
+                  />
                 </div>
 
                 <div class="Row2">
@@ -377,17 +297,11 @@
                       <option>Other</option>
                     </select>
                   </div>
-
-<!--                   <div class="Field">
-                    <div class="Label">Datum (optional)</div>
-                    <input class="Input" type="date" id="date" name="date" />
-                    <div class="Help">Für Booking/Shows hilfreich.</div>
-                  </div> -->
                 </div>
 
                 <div class="Field">
                   <div class="Label">Message *</div>
-                  <textarea class="Textarea" id="message" name="message" placeholder="Location, Zeitfenster, Backline, Budgetrahmen – alles rein, was hilft." required></textarea>
+                  <textarea class="Textarea" id="message" name="message" placeholder="Location, Zeitfenster, Slot-Länge, Backline, Budgetrahmen – alles rein, was hilft." required></textarea>
                 </div>
 
                 <div class="Actions">
@@ -396,10 +310,9 @@
                 </div>
 
                 <div class="Status" id="status" role="status" aria-live="polite"></div>
-
-<!--                 <div class="Help">
-                  Hinweis: Ohne Backend wird nichts verschickt – aber UI/Validierung ist schon da.
-                </div> -->
+                <div class="Help">
+                  Beim Absenden wird eine E-Mail an <b>alternativewaysofficial@gmail.com</b> gesendet.
+                </div>
               </form>
             </div>
           </article>
@@ -439,8 +352,7 @@
               <div class="Divider"></div>
 
               <p class="Help">
-                Backend bauen wir easy als nächstes (Google Apps Script → Mail + Logsheet).
-                Dann bleibt das hier 1:1, nur “fetch()” kommt rein.
+                Tipp: Für Booking sind Datum/Ort/Slot-Länge + Backline mega hilfreich.
               </p>
             </div>
           </aside>
@@ -461,6 +373,8 @@
 
   <script>
     (function(){
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw2M9zVc3bc6jynENnomwuW9cf9WJHOeuyN_mg5CVjugHYD_ORClaXtY_p8WY16EGJOJA/exec";
+
       const form = document.getElementById("contactForm");
       const status = document.getElementById("status");
       const sendBtn = document.getElementById("sendBtn");
@@ -480,25 +394,23 @@
         hide();
       });
 
-      form.addEventListener("submit", (e) => {
+      form.addEventListener("submit", async (e) => {
         e.preventDefault();
         hide();
 
-        // Honeypot: wenn gefüllt -> Bot
-        const hp = document.getElementById("company");
+        // Honeypot: wenn gefüllt -> still ignore
+        const hp = document.getElementById("website");
         if(hp && hp.value.trim()){
-          show("Nice try. 😄");
           return;
         }
 
-        // Simple validation
         const name = document.getElementById("name").value.trim();
         const email = document.getElementById("email").value.trim();
         const topic = document.getElementById("topic").value.trim();
         const message = document.getElementById("message").value.trim();
 
         if(!name || !email || !topic || !message){
-          show("Bitte die Pflichtfelder ausfüllen (Name, E-Mail, Anfrage, Nachricht).");
+          show("Bitte die Pflichtfelder ausfüllen (Name, E-Mail, Topic, Message).");
           return;
         }
 
@@ -508,15 +420,37 @@
           return;
         }
 
-        // Fake send (ohne Backend)
         sendBtn.disabled = true;
         sendBtn.textContent = "Sende…";
 
-        setTimeout(() => {
+        // ✅ Wir senden als SIMPLE REQUEST (kein JSON-Header) -> kein Preflight
+        const payload = JSON.stringify({
+          name, email, topic, message,
+          website: (hp?.value || "")
+        });
+
+        try{
+          // optional timeout, damit sich "hängt" nicht wie tot anfühlt
+          const ctrl = new AbortController();
+          const t = setTimeout(() => ctrl.abort(), 12000);
+
+          await fetch(SCRIPT_URL, {
+            method: "POST",
+            // keine Headers setzen -> Browser nutzt text/plain, kein Preflight
+            body: payload,
+            signal: ctrl.signal
+          });
+
+          clearTimeout(t);
+
+          form.reset();
+          show("✅ Danke! Nachricht wurde gesendet.");
+        }catch(err){
+          show("❌ Netzwerkfehler. Bitte später nochmal.");
+        }finally{
           sendBtn.disabled = false;
           sendBtn.textContent = "Senden";
-          show("✅ Gesendet (Mock). Backend kommt als nächstes – aktuell wird noch nichts verschickt.");
-        }, 650);
+        }
       });
     })();
   </script>
